@@ -1,0 +1,399 @@
+/*
+ * Created on July 17, 2011 by Bradley Wagner
+ * 
+ * Please feel free to distribute this code in any way, with or without this notice.
+ */
+package com.richmond.edu.webservices;
+
+import org.apache.axis.AxisFault;
+
+import com.hannonhill.www.ws.ns.AssetOperationService.Asset;
+import com.hannonhill.www.ws.ns.AssetOperationService.AssetOperationHandler;
+import com.hannonhill.www.ws.ns.AssetOperationService.AssetOperationHandlerServiceLocator;
+import com.hannonhill.www.ws.ns.AssetOperationService.Authentication;
+import com.hannonhill.www.ws.ns.AssetOperationService.CreateResult;
+import com.hannonhill.www.ws.ns.AssetOperationService.Page;
+import com.hannonhill.www.ws.ns.AssetOperationService.StructuredData;
+import com.hannonhill.www.ws.ns.AssetOperationService.StructuredDataNode;
+import com.hannonhill.www.ws.ns.AssetOperationService.StructuredDataNodes;
+import com.hannonhill.www.ws.ns.AssetOperationService.StructuredDataType;
+
+// FIX ME!!! WORKING HERE!!!
+public class SummerScheduleWriter
+{
+    public static String createSummerSchedule(String userName, String password, SummerScheduleBean summerSchedule, boolean isProduction) throws Exception
+    {
+        // Make the page we are going to create:
+        Page page = new Page();
+        /*evening schedule 
+        if(isProduction)
+        {
+            page.setContentTypeId("c4751c788da618630014df5314d4c5ea");
+            page.setParentFolderId("1964402b8da618630014df536a87ac7a");
+            page.setSiteId("dd3484f38da6186300a45fc1085bceb3");
+        }
+        else
+        {
+            page.setContentTypeId("005e496e8da6085f00bdf256e963793c");
+            page.setParentFolderId("0052d6628da6085f00bdf256e379eed1");
+            page.setSiteId("dd3484f38da6186300a45fc1085bceb3");
+        }*/
+        // summer schedule
+        if(isProduction)
+        {
+            page.setContentTypeId("f6ea685c8da618630014df535e71f575");
+           // page.setParentFolderId("f6eed5068da618630014df532e732a6a"); //summer
+            page.setParentFolderId("1964402b8da618630014df536a87ac7a"); //evening
+            page.setSiteId("dd3484f38da6186300a45fc1085bceb3");
+        }
+        else
+        {
+            page.setContentTypeId("f6ebb0318da6085f00830cbb830e17c4");
+           // page.setParentFolderId("f6ef90bc8da6085f00830cbbdc4a4488"); //summer
+            page.setParentFolderId("0052d6628da6085f00bdf256e379eed1"); //evening
+            page.setSiteId("dd3484f38da6186300a45fc1085bceb3");
+        }
+        page.setName(summerSchedule.crs_subj + summerSchedule.crs_nmbr + "-" + summerSchedule.crs_crn);
+
+        // Make a structured data for the page:
+        StructuredData pageStructuredData = new StructuredData();
+        pageStructuredData.setDefinitionPath("/Data Definitions/SPCS-CATALOG/CRS-SCHEDULE-COURSES");
+        
+        // Create a structured data node array
+        StructuredDataNode[] summerScheduleNodeArray = new StructuredDataNode[1];
+        
+        // Make a new node for the schedule:
+        StructuredDataNode summerScheduleNode = new StructuredDataNode();
+        summerScheduleNode.setType(StructuredDataType.group);
+        summerScheduleNode.setIdentifier("course");
+        /*
+           0 st (True/False)
+           1 crs_status
+           2 crs_dept
+           3 crs_subj
+           4 crs_nmbr
+           5 crs_title
+           6 crs_crn
+           7 crs_sect
+           8 reg_title
+           9 crs_days[array]         // Split on comma?  Or just one - just one is currently implemented
+                crs_day
+                time_start
+                time_end
+                session_date_start   // New
+                session_date_end     // New
+          10 crs_data[array]         // Max 1
+                date_start
+                date_end
+          11 sched_note
+          12 crs_hrs
+          13 crs_fee
+          14 crs_instructors [array] // Combine instructors here
+                inst_first
+                inst_last
+                inst_netid
+          15 crs_loc
+          16 st_flag
+          17 sem_nmbr
+          18 st_crs_desc
+          19 crs_gened    // (text field)
+          20 crs_topic    // (comma separated topics Ð this format is similar to evening course all Ð crs_catyr)
+          21 crs_term     // (text field)
+          22 crs_campus   // (text field)
+          23 crs_pterm    // (text field)
+          
+        */
+
+        
+        // Make the structured data node array for the schedule nodes:
+        StructuredDataNode[] summerScheduleDataNodeArray = new StructuredDataNode[24];
+        if(summerSchedule.st_flag.length()>0)
+        {
+            summerScheduleDataNodeArray[0]  = makeTextNode("st", "True");
+        }
+        else
+        {
+            summerScheduleDataNodeArray[0]  = makeTextNode("st", "False");
+        }
+        summerScheduleDataNodeArray[1]   = makeTextNode("crs_status",  summerSchedule.crs_status);
+        summerScheduleDataNodeArray[2]   = makeTextNode("crs_dept",    summerSchedule.crs_dept);
+        summerScheduleDataNodeArray[3]   = makeTextNode("crs_subj",    summerSchedule.crs_subj);
+        summerScheduleDataNodeArray[4]   = makeTextNode("crs_nmbr",    summerSchedule.crs_nmbr);
+        summerScheduleDataNodeArray[5]   = makeTextNode("crs_title",   summerSchedule.crs_title);
+        summerScheduleDataNodeArray[6]   = makeTextNode("crs_crn",     summerSchedule.crs_crn);
+        summerScheduleDataNodeArray[7]   = makeTextNode("crs_sect",    summerSchedule.crs_sect);
+        summerScheduleDataNodeArray[8]   = makeTextNode("reg_title",   summerSchedule.reg_title);
+        summerScheduleDataNodeArray[11]  = makeTextNode("sched_note",  summerSchedule.sched_note);
+        summerScheduleDataNodeArray[12]  = makeTextNode("crs_hrs",     summerSchedule.crs_hrs);
+        summerScheduleDataNodeArray[13]  = makeTextNode("crs_fee",     summerSchedule.crs_fee);
+        summerScheduleDataNodeArray[15]  = makeTextNode("crs_loc",     summerSchedule.crs_loc);
+        summerScheduleDataNodeArray[16]  = makeTextNode("st_flag",     summerSchedule.st_flag);
+        summerScheduleDataNodeArray[17]  = makeTextNode("sem_nmbr",    summerSchedule.sem_nmbr);
+        summerScheduleDataNodeArray[18]  = makeTextNode("st_crs_desc", summerSchedule.st_crs_desc);
+        summerScheduleDataNodeArray[19]  = makeTextNode("crs_gened",   summerSchedule.crs_gened);
+        summerScheduleDataNodeArray[21]  = makeTextNode("crs_term",    summerSchedule.crs_term);
+        summerScheduleDataNodeArray[22]  = makeTextNode("crs_campus",  summerSchedule.crs_campus);
+        summerScheduleDataNodeArray[23]  = makeTextNode("crs_pterm",   summerSchedule.crs_pterm);
+
+        // Make the crs_days:
+        // Make a new node for the course days:
+        StructuredDataNode courseDaysDataNode = new StructuredDataNode();
+        courseDaysDataNode.setType(StructuredDataType.group);
+        courseDaysDataNode.setIdentifier("crs_days");
+        String[] courseDayStringArray        = summerSchedule.crs_day.split(",");
+        String[] timeStartStringArray        = summerSchedule.time_start.split(",");
+        String[] timeEndStringArray          = summerSchedule.time_end.split(",");
+        String[] sessionStartDateStringArray = summerSchedule.session_date_start.split(",");
+        String[] sessionEndDateStringArray   = summerSchedule.session_date_end.split(",");
+        StructuredDataNode[] courseDaysNodeArray = null;
+        if(courseDayStringArray.length == 1)
+        {
+            // Only one- could be zero time entries...
+            courseDaysNodeArray = new StructuredDataNode[1];
+            courseDaysNodeArray[0] = makeCourseDayArrayNode(summerSchedule.crs_day, summerSchedule.time_start, summerSchedule.time_end, summerSchedule.session_date_start, summerSchedule.session_date_end);
+        }
+        else
+        {
+            // They must match up:
+            if((courseDayStringArray.length != timeStartStringArray.length) ||
+                    (courseDayStringArray.length != timeEndStringArray.length))
+            {
+                // ERROR!!! LOG THIS - FIX ME!!!
+            }
+            else
+            {
+                courseDaysNodeArray = new StructuredDataNode[courseDayStringArray.length];
+                for(int i=0; i<courseDayStringArray.length; ++i)
+                {
+                    // We may or may not have a session start and end date but if so use them:
+                    String sessionStartDateString = "";
+                    String sessionEndDateString   = "";
+                    if(i<sessionStartDateStringArray.length)
+                    {
+                        sessionStartDateString = ltrim(rtrim(sessionStartDateStringArray[i]));
+                    }
+                    if(i<sessionEndDateStringArray.length)
+                    {
+                        sessionEndDateString = ltrim(rtrim(sessionEndDateStringArray[i]));
+                    }
+                    courseDaysNodeArray[i] = makeCourseDayArrayNode(ltrim(rtrim(courseDayStringArray[i])), timeStartStringArray[i], timeEndStringArray[i], sessionStartDateString, sessionEndDateString);
+                }
+            }
+        }
+        // Put the course days node into the array:
+        StructuredDataNodes courseDaysNodes = new StructuredDataNodes();
+        courseDaysNodes.setStructuredDataNode(courseDaysNodeArray);
+        courseDaysDataNode.setStructuredDataNodes(courseDaysNodes);
+        // Put the course days node into the array:
+        summerScheduleDataNodeArray[9] = courseDaysDataNode;
+        
+        // Make the crs_data:
+        // Make a new node for the course data:
+        StructuredDataNode courseDateDataNode = new StructuredDataNode();
+        courseDateDataNode.setType(StructuredDataType.group);
+        courseDateDataNode.setIdentifier("crs_date");
+        StructuredDataNode[] courseDateNodeArray = new StructuredDataNode[2];
+        courseDateNodeArray[0] = makeTextNode("date_start", summerSchedule.date_start);
+        courseDateNodeArray[1] = makeTextNode("date_end", summerSchedule.date_end);
+        StructuredDataNodes courseDateNodes = new StructuredDataNodes();
+        courseDateNodes.setStructuredDataNode(courseDateNodeArray);
+        courseDateDataNode.setStructuredDataNodes(courseDateNodes);
+        // Put the course data node into the array:
+        summerScheduleDataNodeArray[10] = courseDateDataNode;
+
+        // Make the crs_instructors:
+        // Make a new node for the course instructors:
+        StructuredDataNode instructorsDataNode = new StructuredDataNode();
+        instructorsDataNode.setType(StructuredDataType.group);
+        instructorsDataNode.setIdentifier("crs_instructors");
+        StructuredDataNode[] instructorsNodeArray;
+        if(   (summerSchedule.inst2_first.length()==0)
+           && (summerSchedule.inst2_last.length()==0)
+           && (summerSchedule.inst2_netid.length()==0) )
+        {
+               // Only one instructor
+            instructorsNodeArray = new StructuredDataNode[1];
+            instructorsNodeArray[0] = makeInstructorArrayNode(summerSchedule.inst1_first, summerSchedule.inst1_last, summerSchedule.inst1_netid);
+        }
+        else
+        {
+            // Two instructors:
+            instructorsNodeArray = new StructuredDataNode[2];
+            instructorsNodeArray[0] = makeInstructorArrayNode(summerSchedule.inst1_first, summerSchedule.inst1_last, summerSchedule.inst1_netid);
+            instructorsNodeArray[1] = makeInstructorArrayNode(summerSchedule.inst2_first, summerSchedule.inst2_last, summerSchedule.inst2_netid);
+        }
+        StructuredDataNodes instructorsNodes = new StructuredDataNodes();
+        instructorsNodes.setStructuredDataNode(instructorsNodeArray);
+        instructorsDataNode.setStructuredDataNodes(instructorsNodes);
+        // Put the course days node into the array:
+        summerScheduleDataNodeArray[14] = instructorsDataNode;
+
+        // Make the crs_topics:
+        String[] crs_topicsStringArray = summerSchedule.crs_topic.split(",");
+        // Make a new node for the course year:
+        StructuredDataNode summerScheduleTopicsNode = new StructuredDataNode();
+        summerScheduleTopicsNode.setType(StructuredDataType.group);
+        summerScheduleTopicsNode.setIdentifier("crs_topics");
+        
+        StructuredDataNode[] summerScheduleCrsTopicsDataNodeArray = new StructuredDataNode[crs_topicsStringArray.length];
+        for(int i=0; i<crs_topicsStringArray.length; ++i)
+        {
+            summerScheduleCrsTopicsDataNodeArray[i] = makeTextNode("crs_topic", crs_topicsStringArray[i]);
+        }
+        StructuredDataNodes courseCatYrNodes = new StructuredDataNodes();
+        courseCatYrNodes.setStructuredDataNode(summerScheduleCrsTopicsDataNodeArray);
+        summerScheduleTopicsNode.setStructuredDataNodes(courseCatYrNodes);
+        
+        // Put the course year node into the array:
+        summerScheduleDataNodeArray[20] = summerScheduleTopicsNode;
+
+        // Make a StructuredDataNodes container for the schedule data node array:
+        StructuredDataNodes summerScheduleDataNodes = new StructuredDataNodes();
+        summerScheduleDataNodes.setStructuredDataNode(summerScheduleDataNodeArray);
+
+        // Put the schedule data nodes into the schedule node:
+        summerScheduleNode.setStructuredDataNodes(summerScheduleDataNodes);
+
+        // Put the schedule node into the main node:
+        summerScheduleNodeArray[0] = summerScheduleNode;
+
+        // Make a new StructuredDataNodes container for the node array: (only one node at top level)
+        StructuredDataNodes summerScheduleNodes = new StructuredDataNodes();
+        summerScheduleNodes.setStructuredDataNode(summerScheduleNodeArray);
+
+        // And set it into our outer structured data:
+        pageStructuredData.setStructuredDataNodes(summerScheduleNodes);
+
+        // And set the structured data into the page:
+        page.setStructuredData(pageStructuredData);
+
+        // Create a new asset:
+        Asset asset = new Asset();
+
+        // And put the page in it:
+        asset.setPage(page);
+
+        // Create Authentication:
+        Authentication authentication = new Authentication();
+        authentication.setUsername(userName);
+        authentication.setPassword(password);
+        //Get the AssetOperationHandlerService:
+        AssetOperationHandlerServiceLocator serviceLocator = new AssetOperationHandlerServiceLocator();
+        if(isProduction)
+        {
+            serviceLocator.setAssetOperationServiceEndpointAddress("https://cas.richmond.edu:8443/ws/services/AssetOperationService");
+        }
+        else
+        {
+            serviceLocator.setAssetOperationServiceEndpointAddress("http://vmcas.richmond.edu:8080/ws/services/AssetOperationService");
+        }
+        AssetOperationHandler handler = serviceLocator.getAssetOperationService();
+
+        // Create the damn thing finally:
+        try
+        {
+            CreateResult createResult = handler.create(authentication, asset);
+            if(createResult.getSuccess().equals("true"))
+            {
+                return "";  // Empty string is success
+            }
+            else
+            {
+                return createResult.getMessage();
+            }
+        }
+        catch(AxisFault af)
+        {
+            return af.getFaultReason();
+        }
+    }
+    public static String ltrim(String source) {
+        return source.replaceAll("^\\s+", "");
+    }
+
+    /* remove trailing whitespace */
+    public static String rtrim(String source) {
+        return source.replaceAll("\\s+$", "");
+    }    public static StructuredDataNode makeTextNode(String identifier, String text)
+    {
+        StructuredDataNode node = new StructuredDataNode();
+        node.setType(StructuredDataType.text);
+        node.setIdentifier(identifier);
+        node.setText(text);
+        return node;
+    }
+    public static StructuredDataNode makeInstructorArrayNode(String instructorFirstName, String instructorLastName, String instructorNetId)
+    {
+        StructuredDataNode instructorDataNode = new StructuredDataNode();
+        instructorDataNode.setType(StructuredDataType.group);
+        instructorDataNode.setIdentifier("crs_instructor");
+        StructuredDataNode[] instructorNodeArray = new StructuredDataNode[3];
+        instructorNodeArray[0] = makeTextNode("inst_first", instructorFirstName);
+        instructorNodeArray[1] = makeTextNode("inst_last",  instructorLastName);
+        instructorNodeArray[2] = makeTextNode("inst_netid",  instructorNetId);
+        StructuredDataNodes instructorNodes = new StructuredDataNodes();
+        instructorNodes.setStructuredDataNode(instructorNodeArray);
+        instructorDataNode.setStructuredDataNodes(instructorNodes);
+        return instructorDataNode;
+    }
+    public static StructuredDataNode makeCourseDayArrayNode(String dow, String timeStart, String timeEnd, String sessionDateStart, String sessionDateEnd)
+    {
+        StructuredDataNode courseDaysDataNode = new StructuredDataNode();
+        courseDaysDataNode.setType(StructuredDataType.group);
+        courseDaysDataNode.setIdentifier("crs_day");
+        StructuredDataNode[] courseDaysNodeArray = new StructuredDataNode[5];
+        courseDaysNodeArray[0] = makeTextNode("crs_dow",    dow);
+        courseDaysNodeArray[1] = makeTextNode("time_start", timeStart);
+        courseDaysNodeArray[2] = makeTextNode("time_end",   timeEnd);
+        courseDaysNodeArray[3] = makeTextNode("session_date_start",   sessionDateStart);
+        courseDaysNodeArray[4] = makeTextNode("session_date_end",   sessionDateEnd);
+        StructuredDataNodes courseDaysNodes = new StructuredDataNodes();
+        courseDaysNodes.setStructuredDataNode(courseDaysNodeArray);
+        courseDaysDataNode.setStructuredDataNodes(courseDaysNodes);
+        // Put the course days node into the array:
+        return courseDaysDataNode;
+    }
+    public static void main(String[] args)
+    {
+        SummerScheduleBean summerSchedule = new SummerScheduleBean();
+        summerSchedule.setCrs_crn("crs_crn");
+        summerSchedule.setCrs_dept("crs_dept");
+        summerSchedule.setCrs_subj("crs_subj");
+        summerSchedule.setCrs_nmbr("crs_nmbr");
+        summerSchedule.setCrs_sect("crs_sect");
+        summerSchedule.setCrs_title("crs_title");
+        summerSchedule.setReg_title("reg_title");
+        summerSchedule.setCrs_day("crs_day");
+        summerSchedule.setTime_start("time_start");
+        summerSchedule.setTime_end("time_end");
+        summerSchedule.setCrs_hrs("crs_hrs");
+        summerSchedule.setDate_start("date_start");
+        summerSchedule.setDate_end("date_end");
+        summerSchedule.setCrs_fee("crs_fee");
+        summerSchedule.setSched_note("sched_note");
+        summerSchedule.setCrs_status("crs_status");
+        summerSchedule.setInst1_first("inst1_first");
+        summerSchedule.setInst1_last("inst1_last");
+        summerSchedule.setInst1_netid("inst1_netid");
+        summerSchedule.setInst2_first("inst2_first");
+        summerSchedule.setInst2_last("inst2_last");
+        summerSchedule.setInst2_netid("inst2_netid");
+        summerSchedule.setCrs_loc("crs_loc");
+        summerSchedule.setSt_flag("st_flag");
+        summerSchedule.setSem_nmbr("sem_nmbr");
+        summerSchedule.setSt_crs_desc("crs_desc");
+        summerSchedule.setCrs_gened("crs_gened");
+        summerSchedule.setCrs_topic("crs_topic");
+        summerSchedule.setCrs_term("crs_term");
+        summerSchedule.setCrs_campus("crs_campus");
+        summerSchedule.setCrs_pterm("crs_pterm");
+        try
+        {
+            createSummerSchedule("chrisfaigle", "cfaigle2011", summerSchedule, false);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+}

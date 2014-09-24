@@ -1,0 +1,74 @@
+package com.richmond.edu.webservices;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JTextArea;
+import javax.swing.SwingWorker;
+
+public class SummerScheduleWriteWorker extends SwingWorker<String, String>
+{
+    private String                         userName        = "";
+    private String                         password        = "";
+    private ArrayList<SummerScheduleBean>  summerSchedules;
+    private final JTextArea                logTextArea;
+    private final boolean                  isProduction;
+
+    public SummerScheduleWriteWorker(String userName, String password, ArrayList<SummerScheduleBean> summerSchedules, JTextArea logTextArea, boolean isProduction)
+    {
+        this.userName          = userName;
+        this.password          = password;
+        this.summerSchedules   = summerSchedules;
+        this.logTextArea       = logTextArea;
+        this.isProduction      = isProduction;
+    }
+
+    @Override
+    protected String doInBackground() throws Exception
+    {
+        int successes = 0;
+        int failures  = 0;
+        for(SummerScheduleBean summerSchedule:summerSchedules)
+        {
+            try
+            {
+                String summerScheduleWriteResult = SummerScheduleWriter.createSummerSchedule(userName, password, summerSchedule, isProduction);
+//                String scheduleWriteResult = "YUP";
+                if(summerScheduleWriteResult.equals(""))
+                {
+                    ++successes;
+                    // Success:
+                    publish(summerSchedule.crs_subj + summerSchedule.crs_nmbr + ": [Success]" + "\n");
+                }
+                else
+                {
+                    ++failures;
+                    publish(summerSchedule.crs_subj + summerSchedule.crs_nmbr + ": [Failure] " + summerScheduleWriteResult + "\n");
+                }
+            }
+            catch(Exception e)
+            {
+                publish(summerSchedule.crs_subj + summerSchedule.crs_nmbr + ": [Exception] " + e.getMessage() + "\n");
+            }
+            if(isCancelled())
+            {
+                
+                publish("Cancelled\n");
+                return("[CANCELLED] " + successes + " successes and " + failures + " failures.\n");
+            }
+        }
+        // Success:
+        publish("Success: Read " + summerSchedules.size() + " schedules\n");
+        return("[COMPLETED] " + successes + " successes and " + failures + " failures.\n");
+    }
+
+    @Override
+    protected void process(List<String> messages)
+    {
+        for(String message:messages)
+        {
+            logTextArea.append(message);
+        }
+        super.process(messages);
+    }
+}

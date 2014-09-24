@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices
+END
+CourseReadWorker.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/CourseReadWorker.java
+END
+CourseWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/CourseWriter.java
+END
+CSIPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/CSIPanel.java
+END
+CourseBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/CourseBean.java
+END
+ScheduleReadWorker.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/ScheduleReadWorker.java
+END
+ScheduleWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/ScheduleWriter.java
+END
+ScheduleBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/ScheduleBean.java
+END
+ScheduleWriteWorker.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/ScheduleWriteWorker.java
+END
+CourseAndScheduleImporter.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/CourseAndScheduleImporter.java
+END
+CourseWriteWorker.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/CourseWriteWorker.java
+END
+OsherScheduleReadWorker.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/OsherScheduleReadWorker.java
+END
+OsherScheduleWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/OsherScheduleWriter.java
+END
+SummerScheduleReadWorker.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/SummerScheduleReadWorker.java
+END
+SummerScheduleWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/SummerScheduleWriter.java
+END
+ThinkAgainScheduleReadWorker.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/ThinkAgainScheduleReadWorker.java
+END
+OsherScheduleBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/OsherScheduleBean.java
+END
+ThinkAgainScheduleWriteWorker.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/ThinkAgainScheduleWriteWorker.java
+END
+ThinkAgainScheduleWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/ThinkAgainScheduleWriter.java
+END
+SummerScheduleWriteWorker.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/SummerScheduleWriteWorker.java
+END
+SummerScheduleBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/SummerScheduleBean.java
+END
+OsherScheduleWriteWorker.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/OsherScheduleWriteWorker.java
+END
+ThinkAgainScheduleBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/src/java/com/richmond/edu/webservices/ThinkAgainScheduleBean.java
+END

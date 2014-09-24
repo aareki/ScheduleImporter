@@ -1,0 +1,114 @@
+package com.richmond.edu.webservices;
+
+import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JTextArea;
+import javax.swing.SwingWorker;
+
+import org.supercsv.cellprocessor.ift.CellProcessor;
+import org.supercsv.io.CsvBeanReader;
+import org.supercsv.prefs.CsvPreference;
+
+public class ThinkAgainScheduleReadWorker extends SwingWorker<ArrayList<ThinkAgainScheduleBean>, String>
+{
+    private ArrayList<ThinkAgainScheduleBean> thinkAgainSchedules = new ArrayList<ThinkAgainScheduleBean>();
+    private final File              file;
+    private final JTextArea         logTextArea;
+
+    public ThinkAgainScheduleReadWorker(File file, JTextArea logTextArea)
+    {
+        this.file = file;
+        this.logTextArea = logTextArea;
+    }
+
+    public ArrayList<ThinkAgainScheduleBean> getThinkAgainSchedules()
+    {
+        return thinkAgainSchedules;
+    }
+
+    @Override
+    protected ArrayList<ThinkAgainScheduleBean> doInBackground() throws Exception
+    {
+        // Do stuff here...
+        final CellProcessor[] processors = new CellProcessor[]
+        {
+                null,       // crs_nmbr
+                null,       // crs_crn
+                null,       // crs_subj
+                null,       // crs_title
+                null,       // crs_day
+                null,       // time_start
+                null,       // time_end
+                null,       // session_date_start
+                null,       // session_date_end
+                null,       // date_start
+                null,       // date_end
+                null,       // crs_topic
+                null,       // crs_fee
+                null,       // inst1_first
+                null,       // inst1_last
+                null,       // inst1_netid
+                null,       // inst2_first
+                null,       // inst2_last
+                null,       // inst2_netid
+                null,       // crs_status
+                null,       // sched_note
+                null       // st_crs_desc
+        };
+        thinkAgainSchedules.clear();
+        try
+        {
+            CsvBeanReader inFile = new CsvBeanReader(new FileReader(file), CsvPreference.EXCEL_PREFERENCE);
+            try
+            {
+              final String[] header = inFile.getCSVHeader(true);
+              ThinkAgainScheduleBean thinkAgainSchedule;
+              while((thinkAgainSchedule = inFile.read(ThinkAgainScheduleBean.class, header, processors)) != null)
+              {
+                  thinkAgainSchedules.add(thinkAgainSchedule);
+                  publish(thinkAgainSchedule.getCrs_subj() + "-" + thinkAgainSchedule.getCrs_nmbr() + "\n");
+                  publish(thinkAgainSchedule.toXML());  // + "\n");
+//                  Thread.sleep(200l);
+                  if(isCancelled())
+                  {
+                      break;
+                  }
+              }
+            }
+            catch(Exception e)
+            {
+                publish("Error: " + e.toString());
+            }
+            finally
+            {
+              inFile.close();
+            }
+        }
+        catch(Exception e)
+        {
+            // FIX ME!!! Print some error log here...
+            publish("Error: " + e.toString());
+            //  return false;   // FIX ME!!! MAKE SURE WE CLEAR ENABLED PROCEED BUTTON
+            return thinkAgainSchedules;
+        }
+        // Success:
+        publish("Success: Read " + thinkAgainSchedules.size() + " thinkAgain schedules\n");
+        // FIX ME!! Check to see if everything is OK
+
+        // Blah blah final results
+        return thinkAgainSchedules;
+    }
+
+    @Override
+    protected void process(List<String> messages)
+    {
+        for(String message:messages)
+        {
+            logTextArea.append(message);
+        }
+        super.process(messages);
+    }
+}

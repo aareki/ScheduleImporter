@@ -1,0 +1,316 @@
+/*
+ * Created on July 17, 2011 by Bradley Wagner
+ * 
+ * Please feel free to distribute this code in any way, with or without this notice.
+ */
+package com.richmond.edu.webservices;
+
+import org.apache.axis.AxisFault;
+
+import com.hannonhill.www.ws.ns.AssetOperationService.Asset;
+import com.hannonhill.www.ws.ns.AssetOperationService.AssetOperationHandler;
+import com.hannonhill.www.ws.ns.AssetOperationService.AssetOperationHandlerServiceLocator;
+import com.hannonhill.www.ws.ns.AssetOperationService.Authentication;
+import com.hannonhill.www.ws.ns.AssetOperationService.CreateResult;
+import com.hannonhill.www.ws.ns.AssetOperationService.Page;
+import com.hannonhill.www.ws.ns.AssetOperationService.StructuredData;
+import com.hannonhill.www.ws.ns.AssetOperationService.StructuredDataNode;
+import com.hannonhill.www.ws.ns.AssetOperationService.StructuredDataNodes;
+import com.hannonhill.www.ws.ns.AssetOperationService.StructuredDataType;
+
+// FIX ME!!! WORKING HERE!!!
+public class OsherScheduleWriter
+{
+    private static int mOsherFileNumber = 0;
+    
+    public static String createOsherSchedule(String userName, String password, OsherScheduleBean osherSchedule, boolean isProduction) throws Exception
+    {
+        // Make the page we are going to create:
+        Page page = new Page();
+        if(isProduction)
+        {
+            page.setContentTypeId("41260c968da61863014455b3e946ca84");
+            page.setParentFolderId("3d1d5c98ac1c04192f62d514ee29f35f");
+            page.setSiteId("dd3484f38da6186300a45fc1085bceb3");
+        }
+        else
+        {
+            page.setContentTypeId("413048058da6085f005297a73343fa15");
+            page.setParentFolderId("95549736ac1c04140ed03465413b44f0");
+            page.setSiteId("dd3484f38da6186300a45fc1085bceb3");
+        }
+/*        if(isProduction)
+        {
+            page.setContentTypeId("0c30fdd58da61863014455b30a16404d");
+            page.setParentFolderId("0c1d43eb8da61863014455b384ea9c33");
+            page.setSiteId("dd3484f38da6186300a45fc1085bceb3");
+        }
+        else
+        {
+            page.setContentTypeId("0d4261548da6085f005297a70957783e");
+            page.setParentFolderId("0d4104c78da6085f005297a706caa124");
+            page.setSiteId("dd3484f38da6186300a45fc1085bceb3");
+        }
+*/
+        //changed for asset name on 2012/07/17
+        page.setName(osherSchedule.crs_subj + osherSchedule.crs_crn_gold + "-" + osherSchedule.crs_crn_silver);
+        //page.setName("Osher" + mOsherFileNumber++);
+        // Make a structured data for the page:
+        StructuredData pageStructuredData = new StructuredData();
+        pageStructuredData.setDefinitionPath("/Data Definitions/SPCS-CATALOG/CRS-SCHEDULE-COURSES");
+        
+        // Create a structured data node array
+        StructuredDataNode[] osherScheduleNodeArray = new StructuredDataNode[1];
+        
+        // Make a new node for the schedule:
+        StructuredDataNode osherScheduleNode = new StructuredDataNode();
+        osherScheduleNode.setType(StructuredDataType.group);
+        osherScheduleNode.setIdentifier("course");
+        // Make the structured data node array for the schedule nodes:
+        StructuredDataNode[] osherScheduleDataNodeArray = new StructuredDataNode[13];
+        osherScheduleDataNodeArray[0]   = makeTextNode("crs_status",  osherSchedule.crs_status);
+        osherScheduleDataNodeArray[2]   = makeTextNode("crs_nmbr",    osherSchedule.crs_nmbr);
+        osherScheduleDataNodeArray[3]   = makeTextNode("crs_title",   osherSchedule.crs_title);
+        osherScheduleDataNodeArray[4]   = makeTextNode("crs_crn_gold",     osherSchedule.crs_crn_gold);
+        osherScheduleDataNodeArray[5]   = makeTextNode("crs_crn_silver",     osherSchedule.crs_crn_silver);
+        osherScheduleDataNodeArray[8]   = makeTextNode("sched_note",  osherSchedule.sched_note);
+        osherScheduleDataNodeArray[9]   = makeTextNode("crs_fee",     osherSchedule.crs_fee);
+        osherScheduleDataNodeArray[11]  = makeTextNode("st_crs_desc", osherSchedule.st_crs_desc);
+
+        // Make the categories (from crs_subj):
+        String[] crs_subjsStringArray = osherSchedule.crs_subj.split(",");
+        // Make a new node for the categories:
+        StructuredDataNode osherScheduleCategoriesNode = new StructuredDataNode();
+        osherScheduleCategoriesNode.setType(StructuredDataType.group);
+        osherScheduleCategoriesNode.setIdentifier("categories");
+        
+        StructuredDataNode[] osherScheduleCategoriesDataNodeArray = new StructuredDataNode[crs_subjsStringArray.length];
+        for(int i=0; i<crs_subjsStringArray.length; ++i)
+        {
+            osherScheduleCategoriesDataNodeArray[i] = makeTextNode("crs_subj", crs_subjsStringArray[i]);
+        }
+        StructuredDataNodes courseCategoriesNodes = new StructuredDataNodes();
+        courseCategoriesNodes.setStructuredDataNode(osherScheduleCategoriesDataNodeArray);
+        osherScheduleCategoriesNode.setStructuredDataNodes(courseCategoriesNodes);
+        // Put the course year node into the array:
+        osherScheduleDataNodeArray[1] = osherScheduleCategoriesNode;
+
+        // Make the crs_days:
+        // Make a new node for the course days:
+        StructuredDataNode courseDaysDataNode = new StructuredDataNode();
+        courseDaysDataNode.setType(StructuredDataType.group);
+        courseDaysDataNode.setIdentifier("crs_days");
+        String[] courseDayStringArray        = osherSchedule.crs_day.split(",");
+        String[] timeStartStringArray        = osherSchedule.time_start.split(",");
+        String[] timeEndStringArray          = osherSchedule.time_end.split(",");
+        String[] sessionStartDateStringArray = osherSchedule.session_date_start.split(",");
+        String[] sessionEndDateStringArray   = osherSchedule.session_date_end.split(",");
+        StructuredDataNode[] courseDaysNodeArray = null;
+        if(courseDayStringArray.length == 1)
+        {
+            // Only one- could be zero time entries...
+            courseDaysNodeArray = new StructuredDataNode[1];
+            courseDaysNodeArray[0] = makeCourseDayArrayNode(osherSchedule.crs_day, osherSchedule.time_start, osherSchedule.time_end, osherSchedule.session_date_start, osherSchedule.session_date_end);
+        }
+        else
+        {
+            // They must match up:
+            if((courseDayStringArray.length != timeStartStringArray.length) ||
+                    (courseDayStringArray.length != timeEndStringArray.length))
+            {
+                // ERROR!!! LOG THIS - FIX ME!!!
+            }
+            else
+            {
+                courseDaysNodeArray = new StructuredDataNode[courseDayStringArray.length];
+                for(int i=0; i<courseDayStringArray.length; ++i)
+                {
+                    // We may or may not have a session start and end date but if so use them:
+                    String sessionStartDateString = "";
+                    String sessionEndDateString   = "";
+                    if(i<sessionStartDateStringArray.length)
+                    {
+                        sessionStartDateString = ltrim(rtrim(sessionStartDateStringArray[i]));
+                    }
+                    if(i<sessionEndDateStringArray.length)
+                    {
+                        sessionEndDateString = ltrim(rtrim(sessionEndDateStringArray[i]));
+                    }
+                    courseDaysNodeArray[i] = makeCourseDayArrayNode(ltrim(rtrim(courseDayStringArray[i])), timeStartStringArray[i], timeEndStringArray[i], sessionStartDateString, sessionEndDateString);
+                }
+            }
+        }
+        // Put the course days node into the array:
+        StructuredDataNodes courseDaysNodes = new StructuredDataNodes();
+        courseDaysNodes.setStructuredDataNode(courseDaysNodeArray);
+        courseDaysDataNode.setStructuredDataNodes(courseDaysNodes);
+        // Put the course days node into the array:
+        osherScheduleDataNodeArray[6] = courseDaysDataNode;
+        
+        // Make the crs_data:
+        // Make a new node for the course data:
+        StructuredDataNode courseDateDataNode = new StructuredDataNode();
+        courseDateDataNode.setType(StructuredDataType.group);
+        courseDateDataNode.setIdentifier("crs_date");
+        StructuredDataNode[] courseDateNodeArray = new StructuredDataNode[2];
+        courseDateNodeArray[0] = makeTextNode("date_start", osherSchedule.date_start);
+        courseDateNodeArray[1] = makeTextNode("date_end", osherSchedule.date_end);
+        StructuredDataNodes courseDateNodes = new StructuredDataNodes();
+        courseDateNodes.setStructuredDataNode(courseDateNodeArray);
+        courseDateDataNode.setStructuredDataNodes(courseDateNodes);
+        // Put the course data node into the array:
+        osherScheduleDataNodeArray[7] = courseDateDataNode;
+
+        // Make the crs_instructors:
+        // Make a new node for the course instructors:
+        StructuredDataNode instructorsDataNode = new StructuredDataNode();
+        instructorsDataNode.setType(StructuredDataType.group);
+        instructorsDataNode.setIdentifier("crs_instructors");
+        StructuredDataNode[] instructorsNodeArray;
+        if(   (osherSchedule.inst2_first.length()==0)
+           && (osherSchedule.inst2_last.length()==0)
+           && (osherSchedule.inst2_netid.length()==0) )
+        {
+               // Only one instructor
+            instructorsNodeArray = new StructuredDataNode[1];
+            instructorsNodeArray[0] = makeInstructorArrayNode(osherSchedule.inst1_first, osherSchedule.inst1_last, osherSchedule.inst1_netid);
+        }
+        else
+        {
+            // Two instructors:
+            instructorsNodeArray = new StructuredDataNode[2];
+            instructorsNodeArray[0] = makeInstructorArrayNode(osherSchedule.inst1_first, osherSchedule.inst1_last, osherSchedule.inst1_netid);
+            instructorsNodeArray[1] = makeInstructorArrayNode(osherSchedule.inst2_first, osherSchedule.inst2_last, osherSchedule.inst2_netid);
+        }
+        StructuredDataNodes instructorsNodes = new StructuredDataNodes();
+        instructorsNodes.setStructuredDataNode(instructorsNodeArray);
+        instructorsDataNode.setStructuredDataNodes(instructorsNodes);
+        // Put the course days node into the array:
+        osherScheduleDataNodeArray[10] = instructorsDataNode;
+
+        // Make the crs_topics:
+        String[] crs_topicsStringArray = osherSchedule.crs_topic.split(",");
+        // Make a new node for the course year:
+        StructuredDataNode osherScheduleTopicsNode = new StructuredDataNode();
+        osherScheduleTopicsNode.setType(StructuredDataType.group);
+        osherScheduleTopicsNode.setIdentifier("crs_topics");
+        
+        StructuredDataNode[] osherScheduleCrsTopicsDataNodeArray = new StructuredDataNode[crs_topicsStringArray.length];
+        for(int i=0; i<crs_topicsStringArray.length; ++i)
+        {
+            osherScheduleCrsTopicsDataNodeArray[i] = makeTextNode("crs_topic", crs_topicsStringArray[i]);
+        }
+        StructuredDataNodes courseTopicsNodes = new StructuredDataNodes();
+        courseTopicsNodes.setStructuredDataNode(osherScheduleCrsTopicsDataNodeArray);
+        osherScheduleTopicsNode.setStructuredDataNodes(courseTopicsNodes);
+        
+        // Put the course year node into the array:
+        osherScheduleDataNodeArray[12] = osherScheduleTopicsNode;
+
+        // Make a StructuredDataNodes container for the schedule data node array:
+        StructuredDataNodes osherScheduleDataNodes = new StructuredDataNodes();
+        osherScheduleDataNodes.setStructuredDataNode(osherScheduleDataNodeArray);
+
+        // Put the schedule data nodes into the schedule node:
+        osherScheduleNode.setStructuredDataNodes(osherScheduleDataNodes);
+
+        // Put the schedule node into the main node:
+        osherScheduleNodeArray[0] = osherScheduleNode;
+
+        // Make a new StructuredDataNodes container for the node array: (only one node at top level)
+        StructuredDataNodes osherScheduleNodes = new StructuredDataNodes();
+        osherScheduleNodes.setStructuredDataNode(osherScheduleNodeArray);
+
+        // And set it into our outer structured data:
+        pageStructuredData.setStructuredDataNodes(osherScheduleNodes);
+
+        // And set the structured data into the page:
+        page.setStructuredData(pageStructuredData);
+
+        // Create a new asset:
+        Asset asset = new Asset();
+
+        // And put the page in it:
+        asset.setPage(page);
+
+        // Create Authentication:
+        Authentication authentication = new Authentication();
+        authentication.setUsername(userName);
+        authentication.setPassword(password);
+        //Get the AssetOperationHandlerService:
+        AssetOperationHandlerServiceLocator serviceLocator = new AssetOperationHandlerServiceLocator();
+        if(isProduction)
+        {
+            serviceLocator.setAssetOperationServiceEndpointAddress("http://cas.richmond.edu:8080/ws/services/AssetOperationService");
+        }
+        else
+        {
+            serviceLocator.setAssetOperationServiceEndpointAddress("http://vmcas.richmond.edu:8080/ws/services/AssetOperationService");
+        }
+        AssetOperationHandler handler = serviceLocator.getAssetOperationService();
+
+        // Create the damn thing finally:
+        try
+        {
+            CreateResult createResult = handler.create(authentication, asset);
+            if(createResult.getSuccess().equals("true"))
+            {
+                return "";  // Empty string is success
+            }
+            else
+            {
+                return createResult.getMessage();
+            }
+        }
+        catch(AxisFault af)
+        {
+            return af.getFaultReason();
+        }
+    }
+    public static String ltrim(String source) {
+        return source.replaceAll("^\\s+", "");
+    }
+
+    /* remove trailing whitespace */
+    public static String rtrim(String source) {
+        return source.replaceAll("\\s+$", "");
+    }    public static StructuredDataNode makeTextNode(String identifier, String text)
+    {
+        StructuredDataNode node = new StructuredDataNode();
+        node.setType(StructuredDataType.text);
+        node.setIdentifier(identifier);
+        node.setText(text);
+        return node;
+    }
+    public static StructuredDataNode makeInstructorArrayNode(String instructorFirstName, String instructorLastName, String instructorNetId)
+    {
+        StructuredDataNode instructorDataNode = new StructuredDataNode();
+        instructorDataNode.setType(StructuredDataType.group);
+        instructorDataNode.setIdentifier("crs_instructor");
+        StructuredDataNode[] instructorNodeArray = new StructuredDataNode[3];
+        instructorNodeArray[0] = makeTextNode("inst_first", instructorFirstName);
+        instructorNodeArray[1] = makeTextNode("inst_last",  instructorLastName);
+        instructorNodeArray[2] = makeTextNode("inst_netid",  instructorNetId);
+        StructuredDataNodes instructorNodes = new StructuredDataNodes();
+        instructorNodes.setStructuredDataNode(instructorNodeArray);
+        instructorDataNode.setStructuredDataNodes(instructorNodes);
+        return instructorDataNode;
+    }
+    public static StructuredDataNode makeCourseDayArrayNode(String dow, String timeStart, String timeEnd, String sessionDateStart, String sessionDateEnd)
+    {
+        StructuredDataNode courseDaysDataNode = new StructuredDataNode();
+        courseDaysDataNode.setType(StructuredDataType.group);
+        courseDaysDataNode.setIdentifier("crs_day");
+        StructuredDataNode[] courseDaysNodeArray = new StructuredDataNode[5];
+        courseDaysNodeArray[0] = makeTextNode("crs_dow",    dow);
+        courseDaysNodeArray[1] = makeTextNode("time_start", timeStart);
+        courseDaysNodeArray[2] = makeTextNode("time_end",   timeEnd);
+        courseDaysNodeArray[3] = makeTextNode("session_date_start",   sessionDateStart);
+        courseDaysNodeArray[4] = makeTextNode("session_date_end",   sessionDateEnd);
+        StructuredDataNodes courseDaysNodes = new StructuredDataNodes();
+        courseDaysNodes.setStructuredDataNode(courseDaysNodeArray);
+        courseDaysDataNode.setStructuredDataNodes(courseDaysNodes);
+        // Put the course days node into the array:
+        return courseDaysDataNode;
+    }
+}

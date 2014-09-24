@@ -1,0 +1,404 @@
+/*
+ * Created on July 17, 2011 by Bradley Wagner
+ * 
+ * Please feel free to distribute this code in any way, with or without this notice.
+ */
+package com.richmond.edu.webservices;
+
+import org.apache.axis.AxisFault;
+
+import com.hannonhill.www.ws.ns.AssetOperationService.Asset;
+import com.hannonhill.www.ws.ns.AssetOperationService.AssetOperationHandler;
+import com.hannonhill.www.ws.ns.AssetOperationService.AssetOperationHandlerServiceLocator;
+import com.hannonhill.www.ws.ns.AssetOperationService.Authentication;
+import com.hannonhill.www.ws.ns.AssetOperationService.CreateResult;
+import com.hannonhill.www.ws.ns.AssetOperationService.Page;
+import com.hannonhill.www.ws.ns.AssetOperationService.StructuredData;
+import com.hannonhill.www.ws.ns.AssetOperationService.StructuredDataNode;
+import com.hannonhill.www.ws.ns.AssetOperationService.StructuredDataNodes;
+import com.hannonhill.www.ws.ns.AssetOperationService.StructuredDataType;
+
+// FIX ME!!! WORKING HERE!!!
+public class ThinkAgainScheduleWriter
+{
+    public static String createThinkAgainSchedule(String userName, String password, ThinkAgainScheduleBean thinkAgainSchedule, boolean isProduction) throws Exception
+    {
+        // Make the page we are going to create:
+        Page page = new Page();
+        if(isProduction)
+        {
+            page.setContentTypeId("0c30fdd58da61863014455b30a16404d");
+            page.setParentFolderId("9e858033ac1c04192f62d5146735d456");
+            page.setSiteId("dd3484f38da6186300a45fc1085bceb3");
+/* From summer schedule:
+            page.setContentTypeId("f6ea685c8da618630014df535e71f575");
+            page.setParentFolderId("f6eed5068da618630014df532e732a6a");
+            page.setSiteId("dd3484f38da6186300a45fc1085bceb3");
+ */
+        }
+        else
+        {
+            page.setContentTypeId("0d4261548da6085f005297a70957783e");
+            page.setParentFolderId("0d4104c78da6085f005297a706caa124");
+            page.setSiteId("dd3484f38da6186300a45fc1085bceb3");
+/*
+            page.setContentTypeId("f6ebb0318da6085f00830cbb830e17c4");
+            page.setParentFolderId("f6ef90bc8da6085f00830cbbdc4a4488");
+            page.setSiteId("dd3484f38da6186300a45fc1085bceb3");
+*/
+        }
+//        [crsNumber]-[crn(with dots replaced by dashes)]
+        String tmpCrsCrn = thinkAgainSchedule.crs_crn.replace('.', '-');
+        page.setName(thinkAgainSchedule.crs_nmbr + "-" + tmpCrsCrn);
+//      page.setName(thinkAgainSchedule.crs_subj + thinkAgainSchedule.crs_nmbr + "-" + thinkAgainSchedule.crs_crn);
+
+        // Make a structured data for the page:
+        StructuredData pageStructuredData = new StructuredData();
+        pageStructuredData.setDefinitionPath("/Data Definitions/SPCS-CATALOG/CRS-SCHEDULE-COURSES");
+        
+        // Create a structured data node array
+        StructuredDataNode[] thinkAgainScheduleNodeArray = new StructuredDataNode[1];
+        
+        // Make a new node for the schedule:
+        StructuredDataNode thinkAgainScheduleNode = new StructuredDataNode();
+        thinkAgainScheduleNode.setType(StructuredDataType.group);
+        thinkAgainScheduleNode.setIdentifier("course");
+        /*
+           0 st (True/False)
+           1 crs_status
+           2 crs_dept
+           3 crs_subj
+           4 crs_nmbr
+           5 crs_title
+           6 crs_crn
+           7 crs_sect
+           8 reg_title
+           9 crs_days[array]         // Split on comma?  Or just one - just one is currently implemented
+                crs_day
+                time_start
+                time_end
+                session_date_start   // New
+                session_date_end     // New
+          10 crs_data[array]         // Max 1
+                date_start
+                date_end
+          11 sched_note
+          12 crs_hrs
+          13 crs_fee
+          14 crs_instructors [array] // Combine instructors here
+                inst_first
+                inst_last
+                inst_netid
+          15 crs_loc
+          16 st_flag
+          17 sem_nmbr
+          18 st_crs_desc
+          19 crs_gened    // (text field)
+          20 crs_topic    // (comma separated topics Ð this format is similar to evening course all Ð crs_catyr)
+          21 crs_term     // (text field)
+          22 crs_campus   // (text field)
+          23 crs_pterm    // (text field)
+          
+        */
+
+        
+        // Make the structured data node array for the schedule nodes:
+        StructuredDataNode[] thinkAgainScheduleDataNodeArray = new StructuredDataNode[12];  // FIX ME!!! THIS SHOULD END UP AS 11
+/*
+        if(thinkAgainSchedule.st_flag.length()>0)
+        {
+            thinkAgainScheduleDataNodeArray[0]  = makeTextNode("st", "True");
+        }
+        else
+        {
+            thinkAgainScheduleDataNodeArray[0]  = makeTextNode("st", "False");
+        }
+*/
+        thinkAgainScheduleDataNodeArray[0]   = makeTextNode("crs_status",  thinkAgainSchedule.crs_status);
+        thinkAgainScheduleDataNodeArray[2]   = makeTextNode("crs_nmbr",    thinkAgainSchedule.crs_nmbr);
+        thinkAgainScheduleDataNodeArray[3]   = makeTextNode("crs_title",   thinkAgainSchedule.crs_title);
+        thinkAgainScheduleDataNodeArray[4]   = makeTextNode("crs_crn",     thinkAgainSchedule.crs_crn);
+        thinkAgainScheduleDataNodeArray[7]   = makeTextNode("sched_note",  thinkAgainSchedule.sched_note);
+        thinkAgainScheduleDataNodeArray[8]   = makeTextNode("crs_fee",     thinkAgainSchedule.crs_fee);
+        thinkAgainScheduleDataNodeArray[10]  = makeTextNode("st_crs_desc", thinkAgainSchedule.st_crs_desc);
+
+        // Make the categories (from crs_subj):
+        String[] crs_subjsStringArray = thinkAgainSchedule.crs_subj.split(",");
+        // Make a new node for the categories:
+        StructuredDataNode thinkAgainScheduleCategoriesNode = new StructuredDataNode();
+        thinkAgainScheduleCategoriesNode.setType(StructuredDataType.group);
+        thinkAgainScheduleCategoriesNode.setIdentifier("categories");
+        
+        StructuredDataNode[] thinkAgainScheduleCategoriesDataNodeArray = new StructuredDataNode[crs_subjsStringArray.length];
+        for(int i=0; i<crs_subjsStringArray.length; ++i)
+        {
+            thinkAgainScheduleCategoriesDataNodeArray[i] = makeTextNode("crs_subj", crs_subjsStringArray[i]);
+        }
+        StructuredDataNodes courseCategoriesNodes = new StructuredDataNodes();
+        courseCategoriesNodes.setStructuredDataNode(thinkAgainScheduleCategoriesDataNodeArray);
+        thinkAgainScheduleCategoriesNode.setStructuredDataNodes(courseCategoriesNodes);
+        // Put the course year node into the array:
+        thinkAgainScheduleDataNodeArray[1] = thinkAgainScheduleCategoriesNode;
+
+        // Make the crs_days:
+        // Make a new node for the course days:
+        StructuredDataNode courseDaysDataNode = new StructuredDataNode();
+        courseDaysDataNode.setType(StructuredDataType.group);
+        courseDaysDataNode.setIdentifier("crs_days");
+        String[] courseDayStringArray        = thinkAgainSchedule.crs_day.split(",");
+        String[] timeStartStringArray        = thinkAgainSchedule.time_start.split(",");
+        String[] timeEndStringArray          = thinkAgainSchedule.time_end.split(",");
+        String[] sessionStartDateStringArray = thinkAgainSchedule.session_date_start.split(",");
+        String[] sessionEndDateStringArray   = thinkAgainSchedule.session_date_end.split(",");
+        StructuredDataNode[] courseDaysNodeArray = null;
+        if(courseDayStringArray.length == 1)
+        {
+            // Only one- could be zero time entries...
+            courseDaysNodeArray = new StructuredDataNode[1];
+            courseDaysNodeArray[0] = makeCourseDayArrayNode(thinkAgainSchedule.crs_day, thinkAgainSchedule.time_start, thinkAgainSchedule.time_end, thinkAgainSchedule.session_date_start, thinkAgainSchedule.session_date_end);
+        }
+        else
+        {
+            // They must match up:
+            if((courseDayStringArray.length != timeStartStringArray.length) ||
+                    (courseDayStringArray.length != timeEndStringArray.length))
+            {
+                // ERROR!!! LOG THIS - FIX ME!!!
+            }
+            else
+            {
+                courseDaysNodeArray = new StructuredDataNode[courseDayStringArray.length];
+                for(int i=0; i<courseDayStringArray.length; ++i)
+                {
+                    // We may or may not have a session start and end date but if so use them:
+                    String sessionStartDateString = "";
+                    String sessionEndDateString   = "";
+                    if(i<sessionStartDateStringArray.length)
+                    {
+                        sessionStartDateString = ltrim(rtrim(sessionStartDateStringArray[i]));
+                    }
+                    if(i<sessionEndDateStringArray.length)
+                    {
+                        sessionEndDateString = ltrim(rtrim(sessionEndDateStringArray[i]));
+                    }
+                    courseDaysNodeArray[i] = makeCourseDayArrayNode(ltrim(rtrim(courseDayStringArray[i])), timeStartStringArray[i], timeEndStringArray[i], sessionStartDateString, sessionEndDateString);
+                }
+            }
+        }
+        // Put the course days node into the array:
+        StructuredDataNodes courseDaysNodes = new StructuredDataNodes();
+        courseDaysNodes.setStructuredDataNode(courseDaysNodeArray);
+        courseDaysDataNode.setStructuredDataNodes(courseDaysNodes);
+        // Put the course days node into the array:
+        thinkAgainScheduleDataNodeArray[5] = courseDaysDataNode;
+        
+        // Make the crs_data:
+        // Make a new node for the course data:
+        StructuredDataNode courseDateDataNode = new StructuredDataNode();
+        courseDateDataNode.setType(StructuredDataType.group);
+        courseDateDataNode.setIdentifier("crs_date");
+        StructuredDataNode[] courseDateNodeArray = new StructuredDataNode[2];
+        courseDateNodeArray[0] = makeTextNode("date_start", thinkAgainSchedule.date_start);
+        courseDateNodeArray[1] = makeTextNode("date_end", thinkAgainSchedule.date_end);
+        StructuredDataNodes courseDateNodes = new StructuredDataNodes();
+        courseDateNodes.setStructuredDataNode(courseDateNodeArray);
+        courseDateDataNode.setStructuredDataNodes(courseDateNodes);
+        // Put the course data node into the array:
+        thinkAgainScheduleDataNodeArray[6] = courseDateDataNode;
+
+        // Make the crs_instructors:
+        // Make a new node for the course instructors:
+        StructuredDataNode instructorsDataNode = new StructuredDataNode();
+        instructorsDataNode.setType(StructuredDataType.group);
+        instructorsDataNode.setIdentifier("crs_instructors");
+        StructuredDataNode[] instructorsNodeArray;
+        if(   (thinkAgainSchedule.inst2_first.length()==0)
+           && (thinkAgainSchedule.inst2_last.length()==0)
+           && (thinkAgainSchedule.inst2_netid.length()==0) )
+        {
+               // Only one instructor
+            instructorsNodeArray = new StructuredDataNode[1];
+            instructorsNodeArray[0] = makeInstructorArrayNode(thinkAgainSchedule.inst1_first, thinkAgainSchedule.inst1_last, thinkAgainSchedule.inst1_netid);
+        }
+        else
+        {
+            // Two instructors:
+            instructorsNodeArray = new StructuredDataNode[2];
+            instructorsNodeArray[0] = makeInstructorArrayNode(thinkAgainSchedule.inst1_first, thinkAgainSchedule.inst1_last, thinkAgainSchedule.inst1_netid);
+            instructorsNodeArray[1] = makeInstructorArrayNode(thinkAgainSchedule.inst2_first, thinkAgainSchedule.inst2_last, thinkAgainSchedule.inst2_netid);
+        }
+        StructuredDataNodes instructorsNodes = new StructuredDataNodes();
+        instructorsNodes.setStructuredDataNode(instructorsNodeArray);
+        instructorsDataNode.setStructuredDataNodes(instructorsNodes);
+        // Put the course days node into the array:
+        thinkAgainScheduleDataNodeArray[9] = instructorsDataNode;
+
+        // Make the crs_topics:
+        String[] crs_topicsStringArray = thinkAgainSchedule.crs_topic.split(",");
+        // Make a new node for the course year:
+        StructuredDataNode thinkAgainScheduleTopicsNode = new StructuredDataNode();
+        thinkAgainScheduleTopicsNode.setType(StructuredDataType.group);
+        thinkAgainScheduleTopicsNode.setIdentifier("crs_topics");
+        
+        StructuredDataNode[] thinkAgainScheduleCrsTopicsDataNodeArray = new StructuredDataNode[crs_topicsStringArray.length];
+        for(int i=0; i<crs_topicsStringArray.length; ++i)
+        {
+            thinkAgainScheduleCrsTopicsDataNodeArray[i] = makeTextNode("crs_topic", crs_topicsStringArray[i]);
+        }
+        StructuredDataNodes courseTopicsNodes = new StructuredDataNodes();
+        courseTopicsNodes.setStructuredDataNode(thinkAgainScheduleCrsTopicsDataNodeArray);
+        thinkAgainScheduleTopicsNode.setStructuredDataNodes(courseTopicsNodes);
+        
+        // Put the course year node into the array:
+        thinkAgainScheduleDataNodeArray[11] = thinkAgainScheduleTopicsNode;
+
+        // Make a StructuredDataNodes container for the schedule data node array:
+        StructuredDataNodes thinkAgainScheduleDataNodes = new StructuredDataNodes();
+        thinkAgainScheduleDataNodes.setStructuredDataNode(thinkAgainScheduleDataNodeArray);
+
+        // Put the schedule data nodes into the schedule node:
+        thinkAgainScheduleNode.setStructuredDataNodes(thinkAgainScheduleDataNodes);
+
+        // Put the schedule node into the main node:
+        thinkAgainScheduleNodeArray[0] = thinkAgainScheduleNode;
+
+        // Make a new StructuredDataNodes container for the node array: (only one node at top level)
+        StructuredDataNodes thinkAgainScheduleNodes = new StructuredDataNodes();
+        thinkAgainScheduleNodes.setStructuredDataNode(thinkAgainScheduleNodeArray);
+
+        // And set it into our outer structured data:
+        pageStructuredData.setStructuredDataNodes(thinkAgainScheduleNodes);
+
+        // And set the structured data into the page:
+        page.setStructuredData(pageStructuredData);
+
+        // Create a new asset:
+        Asset asset = new Asset();
+
+        // And put the page in it:
+        asset.setPage(page);
+
+        // Create Authentication:
+        Authentication authentication = new Authentication();
+        authentication.setUsername(userName);
+        authentication.setPassword(password);
+        //Get the AssetOperationHandlerService:
+        AssetOperationHandlerServiceLocator serviceLocator = new AssetOperationHandlerServiceLocator();
+        if(isProduction)
+        {
+            serviceLocator.setAssetOperationServiceEndpointAddress("http://cas.richmond.edu:8080/ws/services/AssetOperationService");
+        }
+        else
+        {
+            serviceLocator.setAssetOperationServiceEndpointAddress("http://vmcas.richmond.edu:8080/ws/services/AssetOperationService");
+        }
+        AssetOperationHandler handler = serviceLocator.getAssetOperationService();
+
+        // Create the damn thing finally:
+        try
+        {
+            CreateResult createResult = handler.create(authentication, asset);
+            if(createResult.getSuccess().equals("true"))
+            {
+                return "";  // Empty string is success
+            }
+            else
+            {
+                return createResult.getMessage();
+            }
+        }
+        catch(AxisFault af)
+        {
+            return af.getFaultReason();
+        }
+    }
+    public static String ltrim(String source) {
+        return source.replaceAll("^\\s+", "");
+    }
+
+    /* remove trailing whitespace */
+    public static String rtrim(String source) {
+        return source.replaceAll("\\s+$", "");
+    }    public static StructuredDataNode makeTextNode(String identifier, String text)
+    {
+        StructuredDataNode node = new StructuredDataNode();
+        node.setType(StructuredDataType.text);
+        node.setIdentifier(identifier);
+        node.setText(text);
+        return node;
+    }
+    public static StructuredDataNode makeInstructorArrayNode(String instructorFirstName, String instructorLastName, String instructorNetId)
+    {
+        StructuredDataNode instructorDataNode = new StructuredDataNode();
+        instructorDataNode.setType(StructuredDataType.group);
+        instructorDataNode.setIdentifier("crs_instructor");
+        StructuredDataNode[] instructorNodeArray = new StructuredDataNode[3];
+        instructorNodeArray[0] = makeTextNode("inst_first", instructorFirstName);
+        instructorNodeArray[1] = makeTextNode("inst_last",  instructorLastName);
+        instructorNodeArray[2] = makeTextNode("inst_netid",  instructorNetId);
+        StructuredDataNodes instructorNodes = new StructuredDataNodes();
+        instructorNodes.setStructuredDataNode(instructorNodeArray);
+        instructorDataNode.setStructuredDataNodes(instructorNodes);
+        return instructorDataNode;
+    }
+    public static StructuredDataNode makeCourseDayArrayNode(String dow, String timeStart, String timeEnd, String sessionDateStart, String sessionDateEnd)
+    {
+        StructuredDataNode courseDaysDataNode = new StructuredDataNode();
+        courseDaysDataNode.setType(StructuredDataType.group);
+        courseDaysDataNode.setIdentifier("crs_day");
+        StructuredDataNode[] courseDaysNodeArray = new StructuredDataNode[5];
+        courseDaysNodeArray[0] = makeTextNode("crs_dow",    dow);
+        courseDaysNodeArray[1] = makeTextNode("time_start", timeStart);
+        courseDaysNodeArray[2] = makeTextNode("time_end",   timeEnd);
+        courseDaysNodeArray[3] = makeTextNode("session_date_start",   sessionDateStart);
+        courseDaysNodeArray[4] = makeTextNode("session_date_end",   sessionDateEnd);
+        StructuredDataNodes courseDaysNodes = new StructuredDataNodes();
+        courseDaysNodes.setStructuredDataNode(courseDaysNodeArray);
+        courseDaysDataNode.setStructuredDataNodes(courseDaysNodes);
+        // Put the course days node into the array:
+        return courseDaysDataNode;
+    }
+    public static void main(String[] args)
+    {
+        ThinkAgainScheduleBean thinkAgainSchedule = new ThinkAgainScheduleBean();
+        thinkAgainSchedule.setCrs_crn("crs_crn");
+//        thinkAgainSchedule.setCrs_dept("crs_dept");
+        thinkAgainSchedule.setCrs_subj("crs_subj");
+        thinkAgainSchedule.setCrs_nmbr("crs_nmbr");
+//        thinkAgainSchedule.setCrs_sect("crs_sect");
+        thinkAgainSchedule.setCrs_title("crs_title");
+//        thinkAgainSchedule.setReg_title("reg_title");
+        thinkAgainSchedule.setCrs_day("crs_day");
+        thinkAgainSchedule.setTime_start("time_start");
+        thinkAgainSchedule.setTime_end("time_end");
+//        thinkAgainSchedule.setCrs_hrs("crs_hrs");
+        thinkAgainSchedule.setDate_start("date_start");
+        thinkAgainSchedule.setDate_end("date_end");
+        thinkAgainSchedule.setCrs_fee("crs_fee");
+        thinkAgainSchedule.setSched_note("sched_note");
+        thinkAgainSchedule.setCrs_status("crs_status");
+        thinkAgainSchedule.setInst1_first("inst1_first");
+        thinkAgainSchedule.setInst1_last("inst1_last");
+        thinkAgainSchedule.setInst1_netid("inst1_netid");
+        thinkAgainSchedule.setInst2_first("inst2_first");
+        thinkAgainSchedule.setInst2_last("inst2_last");
+        thinkAgainSchedule.setInst2_netid("inst2_netid");
+//        thinkAgainSchedule.setCrs_loc("crs_loc");
+//        thinkAgainSchedule.setSt_flag("st_flag");
+//        thinkAgainSchedule.setSem_nmbr("sem_nmbr");
+        thinkAgainSchedule.setSt_crs_desc("crs_desc");
+//        thinkAgainSchedule.setCrs_gened("crs_gened");
+        thinkAgainSchedule.setCrs_topic("crs_topic");
+//        thinkAgainSchedule.setCrs_term("crs_term");
+//        thinkAgainSchedule.setCrs_campus("crs_campus");
+//        thinkAgainSchedule.setCrs_pterm("crs_pterm");
+        try
+        {
+            createThinkAgainSchedule("chrisfaigle", "cfaigle2011", thinkAgainSchedule, false);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+}

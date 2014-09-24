@@ -1,0 +1,74 @@
+package com.richmond.edu.webservices;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JTextArea;
+import javax.swing.SwingWorker;
+
+public class OsherScheduleWriteWorker extends SwingWorker<String, String>
+{
+    private String                         userName        = "";
+    private String                         password        = "";
+    private ArrayList<OsherScheduleBean>   osherSchedules;
+    private final JTextArea                logTextArea;
+    private final boolean                  isProduction;
+
+    public OsherScheduleWriteWorker(String userName, String password, ArrayList<OsherScheduleBean> osherSchedules, JTextArea logTextArea, boolean isProduction)
+    {
+        this.userName          = userName;
+        this.password          = password;
+        this.osherSchedules   = osherSchedules;
+        this.logTextArea       = logTextArea;
+        this.isProduction      = isProduction;
+    }
+
+    @Override
+    protected String doInBackground() throws Exception
+    {
+        int successes = 0;
+        int failures  = 0;
+        for(OsherScheduleBean osherSchedule:osherSchedules)
+        {
+            try
+            {
+                String osherScheduleWriteResult = OsherScheduleWriter.createOsherSchedule(userName, password, osherSchedule, isProduction);
+//                String scheduleWriteResult = "YUP";
+                if(osherScheduleWriteResult.equals(""))
+                {
+                    ++successes;
+                    // Success:
+                    publish(osherSchedule.crs_subj + osherSchedule.crs_nmbr + ": [Success]" + "\n");
+                }
+                else
+                {
+                    ++failures;
+                    publish(osherSchedule.crs_subj + osherSchedule.crs_nmbr + ": [Failure] " + osherScheduleWriteResult + "\n");
+                }
+            }
+            catch(Exception e)
+            {
+                publish(osherSchedule.crs_subj + osherSchedule.crs_nmbr + ": [Exception] " + e.getMessage() + "\n");
+            }
+            if(isCancelled())
+            {
+                
+                publish("Cancelled\n");
+                return("[CANCELLED] " + successes + " successes and " + failures + " failures.\n");
+            }
+        }
+        // Success:
+        publish("Success: Read " + osherSchedules.size() + " schedules\n");
+        return("[COMPLETED] " + successes + " successes and " + failures + " failures.\n");
+    }
+
+    @Override
+    protected void process(List<String> messages)
+    {
+        for(String message:messages)
+        {
+            logTextArea.append(message);
+        }
+        super.process(messages);
+    }
+}

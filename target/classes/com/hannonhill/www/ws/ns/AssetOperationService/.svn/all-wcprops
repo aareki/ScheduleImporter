@@ -1,0 +1,923 @@
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService
+END
+PageRegions.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/PageRegions.java
+END
+Page.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Page.java
+END
+Block.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Block.java
+END
+ConnectorContentTypeLinkParam.java
+K 25
+svn:wc:ra_dav:version-url
+V 177
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ConnectorContentTypeLinkParam.java
+END
+PageConfigurations.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/PageConfigurations.java
+END
+Reference.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Reference.java
+END
+PublishableAsset.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/PublishableAsset.java
+END
+UserAuthTypes.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/UserAuthTypes.java
+END
+AclEntryType.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AclEntryType.java
+END
+TimeUnits.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/TimeUnits.java
+END
+TextBlock.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/TextBlock.java
+END
+DynamicMetadataFieldDefinition.java
+K 25
+svn:wc:ra_dav:version-url
+V 178
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/DynamicMetadataFieldDefinition.java
+END
+MetadataFieldVisibility.java
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/MetadataFieldVisibility.java
+END
+StructuredDataNode.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/StructuredDataNode.java
+END
+IndexBlockSortMethod.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/IndexBlockSortMethod.java
+END
+DynamicMetadataFieldDefinitions.java
+K 25
+svn:wc:ra_dav:version-url
+V 179
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/DynamicMetadataFieldDefinitions.java
+END
+DublinAwareAsset.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/DublinAwareAsset.java
+END
+Destination.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Destination.java
+END
+ReadAuditsResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ReadAuditsResult.java
+END
+Identifier.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Identifier.java
+END
+AclEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AclEntry.java
+END
+AssetFactoryContainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AssetFactoryContainer.java
+END
+PageConfiguration.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/PageConfiguration.java
+END
+Path.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Path.java
+END
+CheckOutResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/CheckOutResult.java
+END
+RoleAssignment.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/RoleAssignment.java
+END
+AssetOperationHandlerService.java
+K 25
+svn:wc:ra_dav:version-url
+V 176
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AssetOperationHandlerService.java
+END
+BaseAsset.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/BaseAsset.java
+END
+FieldValues.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/FieldValues.java
+END
+File.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/File.java
+END
+IndexBlock.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/IndexBlock.java
+END
+WorkflowNamingBehavior.java
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/WorkflowNamingBehavior.java
+END
+Audits.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Audits.java
+END
+XmlBlock.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/XmlBlock.java
+END
+PublishSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/PublishSet.java
+END
+AccessRightsInformation.java
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AccessRightsInformation.java
+END
+Target.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Target.java
+END
+ContaineredAsset.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ContaineredAsset.java
+END
+FeedBlock.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/FeedBlock.java
+END
+DatabaseTransport.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/DatabaseTransport.java
+END
+PublishSetContainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/PublishSetContainer.java
+END
+CheckIn.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/CheckIn.java
+END
+Connector.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Connector.java
+END
+User.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/User.java
+END
+Site.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Site.java
+END
+AclEntries.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AclEntries.java
+END
+SiteAbilities.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/SiteAbilities.java
+END
+ConnectorContentTypeLink.java
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ConnectorContentTypeLink.java
+END
+CopyParameters.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/CopyParameters.java
+END
+Group.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Group.java
+END
+ConnectorContentTypeLinkList.java
+K 25
+svn:wc:ra_dav:version-url
+V 176
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ConnectorContentTypeLinkList.java
+END
+TwitterConnector.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/TwitterConnector.java
+END
+WorkflowTransitionInformation.java
+K 25
+svn:wc:ra_dav:version-url
+V 177
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/WorkflowTransitionInformation.java
+END
+NamedAsset.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/NamedAsset.java
+END
+WorkflowConfiguration.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/WorkflowConfiguration.java
+END
+Read.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Read.java
+END
+StructuredDataNodes.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/StructuredDataNodes.java
+END
+AssetOperationHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AssetOperationHandler.java
+END
+Metadata.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Metadata.java
+END
+MessageMarkType.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/MessageMarkType.java
+END
+ReadAccessRightsResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ReadAccessRightsResult.java
+END
+Delete.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Delete.java
+END
+AssetOperationServiceSoapBindingStub.java
+K 25
+svn:wc:ra_dav:version-url
+V 184
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AssetOperationServiceSoapBindingStub.java
+END
+Edit.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Edit.java
+END
+MessagesList.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/MessagesList.java
+END
+SerializationType.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/SerializationType.java
+END
+Operation.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Operation.java
+END
+AuditParameters.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AuditParameters.java
+END
+SearchResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/SearchResult.java
+END
+Audit.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Audit.java
+END
+MoveParameters.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/MoveParameters.java
+END
+StructuredData.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/StructuredData.java
+END
+AssetFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AssetFactory.java
+END
+SiteDestinationContainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/SiteDestinationContainer.java
+END
+Role.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Role.java
+END
+WorkflowAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/WorkflowAction.java
+END
+ReadWorkflowInformationResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 177
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ReadWorkflowInformationResult.java
+END
+Asset.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Asset.java
+END
+RoleAssignments.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/RoleAssignments.java
+END
+ContentTypeContainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ContentTypeContainer.java
+END
+Folder.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Folder.java
+END
+AssetFactoryPlugin.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AssetFactoryPlugin.java
+END
+XhtmlDataDefinitionBlock.java
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/XhtmlDataDefinitionBlock.java
+END
+ConnectorContentTypeLinkParamList.java
+K 25
+svn:wc:ra_dav:version-url
+V 181
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ConnectorContentTypeLinkParamList.java
+END
+DynamicMetadataFieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/DynamicMetadataFieldType.java
+END
+PublishableAssetList.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/PublishableAssetList.java
+END
+DataDefinitionContainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/DataDefinitionContainer.java
+END
+OperationResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/OperationResult.java
+END
+SearchInformation.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/SearchInformation.java
+END
+AuditTypes.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AuditTypes.java
+END
+FileSystemTransport.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/FileSystemTransport.java
+END
+EntityType.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/EntityType.java
+END
+AclEntryLevel.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AclEntryLevel.java
+END
+AssetFactoryPluginParameter.java
+K 25
+svn:wc:ra_dav:version-url
+V 175
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AssetFactoryPluginParameter.java
+END
+AssetFactoryWorkflowMode.java
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AssetFactoryWorkflowMode.java
+END
+CreateResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/CreateResult.java
+END
+IndexBlockType.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/IndexBlockType.java
+END
+MetadataSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/MetadataSet.java
+END
+WorkflowDefinitionContainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 175
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/WorkflowDefinitionContainer.java
+END
+DynamicMetadataField.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/DynamicMetadataField.java
+END
+FtpTransport.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/FtpTransport.java
+END
+PageConfigurationSetContainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 177
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/PageConfigurationSetContainer.java
+END
+GlobalAbilities.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/GlobalAbilities.java
+END
+AllLevel.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AllLevel.java
+END
+PageRegion.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/PageRegion.java
+END
+RoleTypes.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/RoleTypes.java
+END
+DataDefinition.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/DataDefinition.java
+END
+Create.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Create.java
+END
+Authentication.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Authentication.java
+END
+ExpiringAsset.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ExpiringAsset.java
+END
+WordPressConnector.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/WordPressConnector.java
+END
+ReadResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ReadResult.java
+END
+ReadAccessRights.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ReadAccessRights.java
+END
+Publish.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Publish.java
+END
+EntityTypeString.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/EntityTypeString.java
+END
+FolderContainedAsset.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/FolderContainedAsset.java
+END
+WorkflowStepConfiguration.java
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/WorkflowStepConfiguration.java
+END
+WorkflowSteps.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/WorkflowSteps.java
+END
+ListMessagesResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ListMessagesResult.java
+END
+Message.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Message.java
+END
+CheckOut.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/CheckOut.java
+END
+EditAccessRights.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/EditAccessRights.java
+END
+RecycleBinExpiration.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/RecycleBinExpiration.java
+END
+ScriptFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ScriptFormat.java
+END
+Symlink.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Symlink.java
+END
+ContainerChildren.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ContainerChildren.java
+END
+Workflow.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Workflow.java
+END
+ConnectorParameter.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ConnectorParameter.java
+END
+PageConfigurationSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/PageConfigurationSet.java
+END
+ConnectorParameterList.java
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ConnectorParameterList.java
+END
+XsltFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/XsltFormat.java
+END
+TransportContainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/TransportContainer.java
+END
+BatchResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/BatchResult.java
+END
+Copy.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Copy.java
+END
+IndexBlockSortOrder.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/IndexBlockSortOrder.java
+END
+StructuredDataType.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/StructuredDataType.java
+END
+StructuredDataAssetType.java
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/StructuredDataAssetType.java
+END
+MetadataSetContainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/MetadataSetContainer.java
+END
+SearchMatches.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/SearchMatches.java
+END
+WorkflowStep.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/WorkflowStep.java
+END
+WorkflowStepConfigurations.java
+K 25
+svn:wc:ra_dav:version-url
+V 174
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/WorkflowStepConfigurations.java
+END
+DynamicMetadataFields.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/DynamicMetadataFields.java
+END
+AssetFactoryPlugins.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AssetFactoryPlugins.java
+END
+WorkflowActions.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/WorkflowActions.java
+END
+Template.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Template.java
+END
+AssetFactoryPluginParameters.java
+K 25
+svn:wc:ra_dav:version-url
+V 176
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AssetFactoryPluginParameters.java
+END
+FieldValue.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/FieldValue.java
+END
+SearchMatchType.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/SearchMatchType.java
+END
+AssetOperationHandlerServiceLocator.java
+K 25
+svn:wc:ra_dav:version-url
+V 183
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/AssetOperationHandlerServiceLocator.java
+END
+ConnectorContainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ConnectorContainer.java
+END
+ContentType.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/ContentType.java
+END
+WorkflowDefinition.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/WorkflowDefinition.java
+END
+Move.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/URichmond/!svn/ver/3883/JavaWebServices/trunk/target/generated-sources/axistools/wsdl2java/com/hannonhill/www/ws/ns/AssetOperationService/Move.java
+END

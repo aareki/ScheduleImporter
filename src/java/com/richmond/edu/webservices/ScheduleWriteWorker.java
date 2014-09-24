@@ -1,0 +1,79 @@
+package com.richmond.edu.webservices;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JTextArea;
+import javax.swing.SwingWorker;
+
+/**
+*
+* @author University of Richmond Web Programmers
+*/
+
+public class ScheduleWriteWorker extends SwingWorker<String, String>
+{
+    private String                   userName        = "";
+    private String                   password        = "";
+    private ArrayList<ScheduleBean>  schedules;
+    private final JTextArea          logTextArea;
+    private final boolean            isProduction;
+
+    public ScheduleWriteWorker(String userName, String password, ArrayList<ScheduleBean> schedules, JTextArea logTextArea, boolean isProduction)
+    {
+        this.userName     = userName;
+        this.password     = password;
+        this.schedules    = schedules;
+        this.logTextArea  = logTextArea;
+        this.isProduction = isProduction;
+    }
+
+    @Override
+    protected String doInBackground() throws Exception
+    {
+        int successes = 0;
+        int failures  = 0;
+        for(ScheduleBean schedule:schedules)
+        {
+            try
+            {
+                String scheduleWriteResult = ScheduleWriter.createSchedule(userName, password, schedule, isProduction);
+//                String scheduleWriteResult = "YUP";
+                if(scheduleWriteResult.equals(""))
+                {
+                    ++successes;
+                    // Success:
+                    publish(schedule.crs_subj + schedule.crs_nmbr + ": [Success]" + "\n");
+                }
+                else
+                {
+                    ++failures;
+                    publish(schedule.crs_subj + schedule.crs_nmbr + ": [Failure] " + scheduleWriteResult + "\n");
+                }
+            }
+            catch(Exception e)
+            {
+                publish(schedule.crs_subj + schedule.crs_nmbr + ": [Exception] " + e.getMessage() + "\n");
+            }
+            if(isCancelled())
+            {
+                
+                publish("Cancelled\n");
+                return("[CANCELLED] " + successes + " successes and " + failures + " failures.\n");
+            }
+        }
+        // Success:
+        publish("Success: Read " + schedules.size() + " schedules\n");
+        return("[COMPLETED] " + successes + " successes and " + failures + " failures.\n");
+    }
+
+    @Override
+    protected void process(List<String> messages)
+    {
+        for(String message:messages)
+        {
+            logTextArea.append(message);
+        }
+        super.process(messages);
+    }
+}

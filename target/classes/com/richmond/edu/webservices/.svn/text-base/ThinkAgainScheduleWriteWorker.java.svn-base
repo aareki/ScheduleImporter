@@ -1,0 +1,74 @@
+package com.richmond.edu.webservices;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JTextArea;
+import javax.swing.SwingWorker;
+
+public class ThinkAgainScheduleWriteWorker extends SwingWorker<String, String>
+{
+    private String                         userName        = "";
+    private String                         password        = "";
+    private ArrayList<ThinkAgainScheduleBean>  thinkAgainSchedules;
+    private final JTextArea                logTextArea;
+    private final boolean                  isProduction;
+
+    public ThinkAgainScheduleWriteWorker(String userName, String password, ArrayList<ThinkAgainScheduleBean> thinkAgainSchedules, JTextArea logTextArea, boolean isProduction)
+    {
+        this.userName          = userName;
+        this.password          = password;
+        this.thinkAgainSchedules   = thinkAgainSchedules;
+        this.logTextArea       = logTextArea;
+        this.isProduction      = isProduction;
+    }
+
+    @Override
+    protected String doInBackground() throws Exception
+    {
+        int successes = 0;
+        int failures  = 0;
+        for(ThinkAgainScheduleBean thinkAgainSchedule:thinkAgainSchedules)
+        {
+            try
+            {
+                String thinkAgainScheduleWriteResult = ThinkAgainScheduleWriter.createThinkAgainSchedule(userName, password, thinkAgainSchedule, isProduction);
+//                String scheduleWriteResult = "YUP";
+                if(thinkAgainScheduleWriteResult.equals(""))
+                {
+                    ++successes;
+                    // Success:
+                    publish(thinkAgainSchedule.crs_subj + thinkAgainSchedule.crs_nmbr + ": [Success]" + "\n");
+                }
+                else
+                {
+                    ++failures;
+                    publish(thinkAgainSchedule.crs_subj + thinkAgainSchedule.crs_nmbr + ": [Failure] " + thinkAgainScheduleWriteResult + "\n");
+                }
+            }
+            catch(Exception e)
+            {
+                publish(thinkAgainSchedule.crs_subj + thinkAgainSchedule.crs_nmbr + ": [Exception] " + e.getMessage() + "\n");
+            }
+            if(isCancelled())
+            {
+                
+                publish("Cancelled\n");
+                return("[CANCELLED] " + successes + " successes and " + failures + " failures.\n");
+            }
+        }
+        // Success:
+        publish("Success: Read " + thinkAgainSchedules.size() + " schedules\n");
+        return("[COMPLETED] " + successes + " successes and " + failures + " failures.\n");
+    }
+
+    @Override
+    protected void process(List<String> messages)
+    {
+        for(String message:messages)
+        {
+            logTextArea.append(message);
+        }
+        super.process(messages);
+    }
+}
