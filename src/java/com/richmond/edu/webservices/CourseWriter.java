@@ -1,8 +1,3 @@
-/*
- * Created on July 17, 2011 by Bradley Wagner
- * 
- * Please feel free to distribute this code in any way, with or without this notice.
- */
 package com.richmond.edu.webservices;
 
 import org.apache.axis.AxisFault;
@@ -26,87 +21,18 @@ public class CourseWriter
 {
     public static String createCourse(String userName, String password, CourseBean course, boolean isProduction) throws Exception
     {
-        /*
-            <?xml version="1.0" encoding="UTF-8"?>
-            <system-data-structure>
-                <!-- 
-                    =====//XML STRUCTURE FOR EXIST DB=========
-                    <course>
-                        <courseLevel>300</courseLevel>
-                        <search>
-                            <crs_dept>Accounting</crs_dept>
-                            <subj_nbmr>ACTT300U</subj_nbmr> (this is combination of subject and course number)
-                            <crs_subj>ACCT</crs_subj>
-                            <crs_nmbr>300U</crs_nmbr>
-                            <crs_title>Accounting for Non-Accountants</crs_title>
-                            <crs_desc>Analytical and interpretative approach to ...</crs_desc>
-                        </search>
-                        <crs_notes/>
-                        <crs_prereq/>
-                        <crs_hours>3</crs_hours>          
-                        <crs_years>
-                            <crs_catyr>2010-2011</crs_catyr>
-                            <crs_catyr>2006-2007</crs_catyr>
-                        </crs_years>
-                    </course>
-                 -->
-                <!--
-                ====//BELOW IS A DATA DEFINITION STRUCTURE IN CASCADE==
-                <group identifier="course" label="Course Information" required="true">
-                    <text type="radiobutton" identifier="selectedTopics" label="Selected Topics" default="False">
-                        <radio-item value="True"/>
-                        <radio-item value="False"/>
-                    </text>
-                    <text identifier="crs_dept" label="Course Department" multiple="false" required="true"/>
-                    <text identifier="crs_subj" label="Course Subject" type="dropdown" required="true">
-                        <dropdown-item value="">Select</dropdown-item>
-                        <dropdown-item value="ACCT"/>
-                        <dropdown-item value="ADED"/>
-                        ............................
-                        <dropdown-item value="WGSS"/>
-                    </text>
-                    <text identifier="crs_nmbr" label="Course Number" multiple="false" required="true"/>
-                    <text identifier="crs_title" label="Title" multiple="false" required="true"/>
-                    <text identifier="crs_desc" label="Description" multiple="false" multi-line="true" required="false"/>
-                    <text identifier="crs_notes" label="Notes" multiple="false" multi-line="false" required="false"/>
-                    <text identifier="crs_prereq" label="Prerequisites" required="false"/>
-                    <text identifier="crs_hours" label="Hours" required="false"/>
-                    <group identifier="crs_years" label="Course Years" multiple="false">
-                        <text type="dropdown" identifier="crs_catyr" label="Course Catalog Year" multiple="true">
-                            <dropdown-item value=""/>
-                            <dropdown-item value="2011-2012"/>
-                            <dropdown-item value="2010-2011"/>
-                            <dropdown-item value="2009-2010"/>
-                            <dropdown-item value="2008-2009"/>
-                            <dropdown-item value="2007-2008"/>
-                            <dropdown-item value="2006-2007"/>
-                            <dropdown-item value="2005-2006"/>
-                            <dropdown-item value="2004-2005"/>
-                            <dropdown-item value="2003-2004"/>
-                        </text>
-                    </group>
-                </group>
-                <!-- THIS AREA IS JUST ONLY FOR CASCADE USE OF CONTRIBUTOR COMMENT -->
-                <group identifier="comments" label="Editor's Comments/Notes">
-                    <text identifier="editor_notes" label="Special Notes" multiple="false" multi-line="false" required="false"/>
-                    <text identifier="editor_comments" label="Comment" multiple="false" multi-line="true" required="false"/>
-                    <text identifier="publishbefore" label="DON'T Publish After" type="datetime" required="false"/> 
-                    <text identifier="publishafter" label="ONLY Publish After" type="datetime" required="false"/>  
-                </group>
-            </system-data-structure>
-         */
         Page page = new Page();
         if(isProduction)
         {
-            page.setContentTypeId("88aa7bfb8da618630014df53f80f2051");
-            page.setParentFolderId("88a360208da618630014df53735e56b2");
-            page.setSiteId("dd3484f38da6186300a45fc1085bceb3");
+            page.setContentTypeId("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); //enter cascade contenttype id - PROD
+            page.setParentFolderId("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); //enter cascade parentfolder id - PROD
+            page.setSiteId("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); //enter cascade site id - PROD
         }
         else
         {
-            page.setContentTypeId("a820368c8da6085f00bdf25636bbb8ea");
-            page.setParentFolderId("8f53d6948da6085f00bdf2564ee3a7ad");
-            page.setSiteId("dd3484f38da6186300a45fc1085bceb3");
+            page.setContentTypeId("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); //enter cascade contenttype id - QA
+            page.setParentFolderId("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); //enter cascade parentfolder id - QA
+            page.setSiteId("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); //enter cascade site id - QA
         }
         page.setName(course.crs_subj+course.crs_nmbr);
         
@@ -189,12 +115,11 @@ public class CourseWriter
         AssetOperationHandlerServiceLocator serviceLocator = new AssetOperationHandlerServiceLocator();
         if(isProduction)
         {
-            serviceLocator.setAssetOperationServiceEndpointAddress("https://cas.richmond.edu:8443/ws/services/AssetOperationService");
-//            serviceLocator.setAssetOperationServiceEndpointAddress("https://bannerweb.richmond.edu");  // Keystore test from external net to verify access to SSL keystore
+            serviceLocator.setAssetOperationServiceEndpointAddress("https://cas.domainname.edu:8443/ws/services/AssetOperationService");
         }
         else
         {
-            serviceLocator.setAssetOperationServiceEndpointAddress("http://vmcas.richmond.edu:8080/ws/services/AssetOperationService");
+            serviceLocator.setAssetOperationServiceEndpointAddress("http://vmcas.domainname.edu:8080/ws/services/AssetOperationService");
         }
         AssetOperationHandler handler = serviceLocator.getAssetOperationService();
 
@@ -238,7 +163,7 @@ public class CourseWriter
         course.setCrs_catyr("2008-2009,2009-2010,2010-2011");
         try
         {
-            createCourse("chrisfaigle", "cfaigle2011", course, false);
+            createCourse("username", "password", course, false);
         }
         catch(Exception e)
         {

@@ -61,9 +61,9 @@ public class CSIPanel extends javax.swing.JPanel
         proceedButton = new javax.swing.JButton();
         quitButton = new javax.swing.JButton();
         userNameTextField = new javax.swing.JTextField();
-        userNameTextField.setText("enterusername");   // FIX ME!!! KILL THIS
+        userNameTextField.setText("username");   // FIX ME!!! KILL THIS
         passwordTextField = new javax.swing.JPasswordField();
-        passwordTextField.setText("enterpasseword");   // FIX ME!!! KILL THIS
+        passwordTextField.setText("passeword");   // FIX ME!!! KILL THIS
         userNameLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();

@@ -1,8 +1,3 @@
-/*
- * Created on July 17, 2011 by Bradley Wagner
- * 
- * Please feel free to distribute this code in any way, with or without this notice.
- */
 package com.richmond.edu.webservices;
 
 import org.apache.axis.AxisFault;
@@ -31,15 +26,15 @@ public class ScheduleWriter
         Page page = new Page();
         if(isProduction)
         {
-            page.setContentTypeId("c4751c788da618630014df5314d4c5ea");
-            page.setParentFolderId("ad2aff2fac1c04144606bf0d9e62cad1");
-            page.setSiteId("dd3484f38da6186300a45fc1085bceb3");
+            page.setContentTypeId("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); //enter cascade contenttype id - PROD
+            page.setParentFolderId("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); //enter cascade parentfolder id - PROD
+            page.setSiteId("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); //enter cascade site id - PROD
         }
         else
         {
-            page.setContentTypeId("c4751c788da618630014df5314d4c5ea");
-            page.setParentFolderId("ad2aff2fac1c04144606bf0d9e62cad1");
-            page.setSiteId("dd3484f38da6186300a45fc1085bceb3");
+            page.setContentTypeId("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); //enter cascade contenttype id - QA
+            page.setParentFolderId("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); //enter cascade parentfolder id - QA
+            page.setSiteId("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); //enter cascade site id - QA
         }
         page.setName(schedule.crs_subj+schedule.crs_nmbr+"-"+schedule.crs_crn);
 
@@ -196,7 +191,7 @@ public class ScheduleWriter
            && (schedule.inst2_last.length()==0)
            && (schedule.inst2_netid.length()==0) )
         {
-               // Only one instructor
+            // Only one instructor
             instructorsNodeArray = new StructuredDataNode[1];
             instructorsNodeArray[0] = makeInstructorArrayNode(schedule.inst1_first, schedule.inst1_last, schedule.inst1_netid);
         }
@@ -213,10 +208,9 @@ public class ScheduleWriter
         // Put the course days node into the array:
         scheduleDataNodeArray[14] = instructorsDataNode;
         
-        //added by alem on 2012-06-04
         // Make the crs_topics: - aa
         String[] crs_topicsStringArray = schedule.crs_topic.split(",");
-        // Make a new node for the course year: - aa
+        // Make a new node for the course year: 
         StructuredDataNode scheduleTopicsNode = new StructuredDataNode();
         scheduleTopicsNode.setType(StructuredDataType.group);
         scheduleTopicsNode.setIdentifier("crs_topics");
@@ -230,7 +224,7 @@ public class ScheduleWriter
         courseCatYrNodes.setStructuredDataNode(scheduleCrsTopicsDataNodeArray);
         scheduleTopicsNode.setStructuredDataNodes(courseCatYrNodes);
         
-        // Put the course year node into the array: - aa
+        // Put the course year node into the array: 
         scheduleDataNodeArray[20] = scheduleTopicsNode;
 
         // Make a StructuredDataNodes container for the schedule data node array:
@@ -267,11 +261,11 @@ public class ScheduleWriter
         AssetOperationHandlerServiceLocator serviceLocator = new AssetOperationHandlerServiceLocator();
         if(isProduction)
         {
-            serviceLocator.setAssetOperationServiceEndpointAddress("http://cas.richmond.edu:8080/ws/services/AssetOperationService");
+            serviceLocator.setAssetOperationServiceEndpointAddress("http://cas.domainname.edu:8080/ws/services/AssetOperationService");
         }
         else
         {
-            serviceLocator.setAssetOperationServiceEndpointAddress("http://vmcas.richmond.edu:8080/ws/services/AssetOperationService");
+            serviceLocator.setAssetOperationServiceEndpointAddress("http://vmcas.domainname.edu:8080/ws/services/AssetOperationService");
         }
         AssetOperationHandler handler = serviceLocator.getAssetOperationService();
 
@@ -375,7 +369,7 @@ public class ScheduleWriter
         schedule.setCrs_pterm("crs_pterm");
         try
         {
-            createSchedule("chrisfaigle", "cfaigle2011", schedule, false);
+            createSchedule("username", "password", schedule, false);
         }
         catch(Exception e)
         {

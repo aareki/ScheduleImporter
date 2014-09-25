@@ -34,7 +34,7 @@ public class ScheduleBean
     public String crs_loc;
     public String st_flag;
     public String sem_nmbr;
-    public String st_crs_desc;  //below this are added by Alem Areki on 2012-06-04
+    public String st_crs_desc;  
     public String crs_gened;    // (text field)
     public String crs_topic;    // (comma separated topics Ð this format is similar to evening course all Ð crs_catyr)
     public String crs_term;     // (text field)
@@ -301,7 +301,7 @@ public class ScheduleBean
     {
         this.st_crs_desc = st_crs_desc;
     }
-  //below are added by alem on 2012-06-04
+  
     public String getCrs_gened()
     {
         return crs_gened;
