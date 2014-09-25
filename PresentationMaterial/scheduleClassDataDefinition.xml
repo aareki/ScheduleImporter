@@ -1,0 +1,178 @@
+<system-data-structure>
+    <group identifier="course" label="Course Information" required="true">
+        <text default="False" identifier="selectedTopics" label="Selected Topics" type="radiobutton">
+            <radio-item value="True"/>
+            <radio-item value="False"/>
+        </text>
+        <text default="Scheduled" identifier="crs_status" label="Course Status" type="radiobutton">
+            <radio-item value="Scheduled"/>
+            <radio-item value="New"/>
+            <radio-item value="Canceled"/>
+            <radio-item value="Revised"/>
+        </text>
+        <text default="Yes" identifier="crs_active" label="Course Active" type="radiobutton">
+            <radio-item value="Yes"/>
+            <radio-item value="No"/>
+        </text>
+        <text identifier="crs_dept" label="Course Department" multiple="false" required="true"/>
+        <text identifier="crs_subj" label="Course Subject" required="true" type="dropdown">
+            <dropdown-item value="">Select</dropdown-item>
+            <dropdown-item value="ACCT"/>
+            <dropdown-item value="ADED"/>
+            <dropdown-item value="AMST"/>
+            <dropdown-item value="ANTH"/>
+            <dropdown-item value="ARAB"/>
+            <dropdown-item value="ARCH"/>
+            <dropdown-item value="ART"/>
+            <dropdown-item value="ARTS"/>
+            <dropdown-item value="BIOL"/>
+            <dropdown-item value="BUAD"/>
+            <dropdown-item value="CHEM"/>
+            <dropdown-item value="CHIN"/>
+            <dropdown-item value="CJ"/>
+            <dropdown-item value="CLAC"/>
+            <dropdown-item value="CLCV"/>
+            <dropdown-item value="CLSC"/>
+            <dropdown-item value="CMSC"/>
+            <dropdown-item value="CORE"/>
+            <dropdown-item value="DANC"/>
+            <dropdown-item value="ECON"/>
+            <dropdown-item value="EDUC"/>
+            <dropdown-item value="ENGL"/>
+            <dropdown-item value="ENVR"/>
+            <dropdown-item value="ESM"/>
+            <dropdown-item value="EM"/>
+            <dropdown-item value="FIN"/>
+            <dropdown-item value="FMST"/>
+            <dropdown-item value="FREN"/>
+            <dropdown-item value="FYS"/>
+            <dropdown-item value="GEOL"/>
+            <dropdown-item value="GEOG"/>
+            <dropdown-item value="GERM"/>
+            <dropdown-item value="GREK"/>
+            <dropdown-item value="GSCI"/>
+            <dropdown-item value="HCA"/>
+            <dropdown-item value="HCS"/>
+            <dropdown-item value="HIST"/>
+            <dropdown-item value="HRM"/>
+            <dropdown-item value="HUM"/>
+            <dropdown-item value="IBUS"/>
+            <dropdown-item value="IDST"/>
+            <dropdown-item value="IQS"/>
+            <dropdown-item value="IS"/>
+            <dropdown-item value="ISTY"/>
+            <dropdown-item value="ISYS"/>
+            <dropdown-item value="ITAL"/>
+            <dropdown-item value="JAPN"/>
+            <dropdown-item value="JOUR"/>
+            <dropdown-item value="JWST"/>
+            <dropdown-item value="LA"/>
+            <dropdown-item value="LAC"/>
+            <dropdown-item value="LAIS"/>
+            <dropdown-item value="LATN"/>
+            <dropdown-item value="LAW"/>
+            <dropdown-item value="LDSP"/>
+            <dropdown-item value="LDST"/>
+            <dropdown-item value="LIB"/>
+            <dropdown-item value="LING"/>
+            <dropdown-item value="MACC"/>
+            <dropdown-item value="MATH"/>
+            <dropdown-item value="MBA"/>
+            <dropdown-item value="MGMT"/>
+            <dropdown-item value="MKT"/>
+            <dropdown-item value="MLA"/>
+            <dropdown-item value="MLC"/>
+            <dropdown-item value="MSAP"/>
+            <dropdown-item value="MSCL"/>
+            <dropdown-item value="MSEN"/>
+            <dropdown-item value="MTEC"/>
+            <dropdown-item value="MUS"/>
+            <dropdown-item value="NPS"/>
+            <dropdown-item value="PBAD"/>
+            <dropdown-item value="PBRL"/>
+            <dropdown-item value="PDP"/>
+            <dropdown-item value="PHIL"/>
+            <dropdown-item value="PHIS"/>
+            <dropdown-item value="PHYS"/>
+            <dropdown-item value="PLSC"/>
+            <dropdown-item value="PPEL"/>
+            <dropdown-item value="PSYC"/>
+            <dropdown-item value="RELG"/>
+            <dropdown-item value="RHCS"/>
+            <dropdown-item value="RUSN"/>
+            <dropdown-item value="SA"/>
+            <dropdown-item value="SCS"/>
+            <dropdown-item value="SOC"/>
+            <dropdown-item value="SPAN"/>
+            <dropdown-item value="SPCH"/>
+            <dropdown-item value="THTR"/>
+            <dropdown-item value="URPP"/>
+            <dropdown-item value="WELL"/>
+            <dropdown-item value="WMST"/>
+            <dropdown-item value="WGSS"/>
+            <dropdown-item value="XSSA"/>
+        </text>
+        <text identifier="crs_nmbr" label="Course Number" multiple="false" required="true"/>
+        <text identifier="crs_title" label="Title" multiple="false" required="false"/>
+        <text identifier="crs_crn" label="Course CRN" required="true"/>
+        <text identifier="reg_title" label="Regular Title" multiple="false" required="false"/>
+
+        <group identifier="crs_days" label="Course days" multiple="false">
+            <group identifier="crs_day" label="Course day" multiple="true">
+                <text identifier="crs_dow" label="Course Day of week" multiple="false"
+                    type="dropdown">
+                    <dropdown-item value=""/>
+                    <dropdown-item value="Monday"/>
+                    <dropdown-item value="Tuesday"/>
+                    <dropdown-item value="Wednesday"/>
+                    <dropdown-item value="Thursday"/>
+                    <dropdown-item value="Friday"/>
+                    <dropdown-item value="Saturday"/>
+                    <dropdown-item value="Sunday"/>
+                    <dropdown-item value="Online"/>
+                    <dropdown-item value="Abroad"/>
+                    <dropdown-item value="TBD"/>
+                    <dropdown-item value="TBA"/>
+                </text>
+                <text identifier="time_start" label="Time Start" required="false"/>
+                <text identifier="time_end" label="Time End" required="false"/>
+                <text identifier="session_date_start" label="Session Date Start" required="false"/>
+                <text identifier="session_date_end" label="Session Date End" required="false"/>
+                <text identifier="session_location" label="Session Location" required="false"/>
+            </group>
+        </group>
+
+        <group identifier="crs_date" label="Course Date" multiple="false">
+            <text identifier="date_start" label="Date Start" required="false"/>
+            <text identifier="date_end" label="Date End" required="false"/>
+        </group>
+
+        <text identifier="sched_note" label="Schedule Note" multi-line="false" multiple="false"
+            required="false"/>
+        <text identifier="crs_hrs" label="Course Hours" required="false"/>
+        <text identifier="crs_fee" label="Course Fee" multi-line="false" multiple="false"
+            required="false"/>
+
+        <group identifier="crs_instructors" label="Course Instructor(s)" multiple="false">
+            <group identifier="crs_instructor" label="Course Instructor" multiple="true">
+                <text identifier="inst_first" label="First"/>
+                <text identifier="inst_last" label="Last"/>
+                <text identifier="inst_netid" label="Netid" required="false"/>
+            </group>
+        </group>
+        <text identifier="crs_sect" label="Section" required="false"/>
+        <text identifier="crs_loc" label="Location" required="false"/>
+        <text identifier="st_flag" label="School Division/Flag" required="false"/>
+        <text identifier="sem_nmbr" label="Term" required="false"/>
+        <text identifier="st_crs_desc" label="School Course Description" multi-line="true"
+            required="false"/>
+        <text identifier="crs_gened" label="General ED Requirements" multi-line="true"
+            required="false"/>
+        <group identifier="crs_topics" label="Course by Topics" multiple="false">
+            <text identifier="crs_topic" label="Topic" multiple="true" required="false"/>
+        </group>
+        <text identifier="crs_term" label="Course Term" required="false"/>
+        <text identifier="crs_campus" label="Course Campus/Division/School" required="false"/>
+        <text identifier="crs_pterm" label="Banner Version of Term" required="false"/>
+    </group>
+</system-data-structure>
